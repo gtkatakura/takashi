@@ -26,7 +26,7 @@ alias gcm='npx git-cz'
 alias gcwip='git commit -m "wip" --no-verify'
 
 function gor {
-  gb | grep "$1" | head -1 | sed -e s/\\s//g | sed -e s/\*//g | xargs git checkout
+  gb | grep "$1" | head -1 | sed -e 's/^[* ]*//' | xargs git checkout
 }
 
 function gom {
@@ -37,7 +37,13 @@ function w {
   if gh pr view >/dev/null 2>&1; then
     gh pr view --web
   else
-    gh repo view --web
+    remote_branch=$(git upstream-name | sed -e s/\*//g)
+
+    if [ -n "$remote_branch" ]; then
+      gh repo view --web --branch="$(git branch-name)"
+    else
+      gh repo view --web
+    fi
   fi
 }
 
@@ -63,6 +69,10 @@ alias p='pnpm'
 # Utility aliases
 function checkip {
   curl -s https://checkip.amazonaws.com
+}
+
+function checkip6() {
+  curl -s https://ifconfig.me
 }
 
 function reload() {

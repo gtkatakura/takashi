@@ -6,5 +6,9 @@ if command -v mise &> /dev/null; then
 fi
 
 if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init bash)"
+  if [ -n "$ZSH_VERSION" ]; then
+    eval "$(zoxide init zsh)"
+  elif [ -n "$BASH_VERSION" ]; then
+    eval "$(zoxide init bash)"
+  fi
 fi

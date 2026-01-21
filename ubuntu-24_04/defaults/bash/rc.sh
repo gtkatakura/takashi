@@ -3,7 +3,6 @@
 
 source ~/.local/share/takashi/shared/defaults/bash/rc.sh
 
-source ~/.local/share/takashi/ubuntu-24_04/defaults/bash/cursor.sh
 source ~/.local/share/takashi/ubuntu-24_04/defaults/bash/keyboard.sh
 source ~/.local/share/takashi/ubuntu-24_04/defaults/bash/shell.sh
 

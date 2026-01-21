@@ -1,51 +1,22 @@
 #!/bin/bash
 
-blue_text "Installing AppImage dependencies"
-sudo add-apt-repository universe -y
-sudo apt install libfuse2t64
-
-# https://github.com/electron/electron/issues/42510#issuecomment-2171583086
-blue_text "Configuring AppImage dependencies"
-sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
-
-green_text "Downloading Cursor (AppImage)"
-cursor_download_link=$(
+green_text "Fetching Cursor download information"
+cursor_info=$(
   curl -sL 'https://www.cursor.com/api/download?platform=linux-x64&releaseTrack=stable' \
-    -H 'content-type: application/json' \
-  | jq -r '.downloadUrl'
+    -H 'content-type: application/json'
 )
 
-sudo curl -L "$cursor_download_link" -o /opt/cursor.appimage
-sudo chmod +x /opt/cursor.appimage
+cursor_deb_url=$(echo "$cursor_info" | jq -r '.debUrl')
+cursor_version=$(echo "$cursor_info" | jq -r '.version')
 
-green_text "Creating the desktop shortcut"
-sudo touch /usr/share/applications/cursor.desktop
+green_text "Downloading Cursor .deb package (version $cursor_version)"
+deb_file="/tmp/cursor_${cursor_version}_amd64.deb"
+curl -L "$cursor_deb_url" -o "$deb_file"
 
-green_text "Configuring the desktop shortcut"
-cat <<EOF | sudo tee /usr/share/applications/cursor.desktop
-[Desktop Entry]
-Name=Cursor
-Exec=/opt/cursor.appimage --no-sandbox %U
-Icon=/home/$USER/.local/share/takashi/ubuntu-24_04/applications/icons/cursor.png
-Type=Application
-Categories=Development;
-MimeType=x-scheme-handler/cursor;
-EOF
+green_text "Installing Cursor .deb package"
+sudo dpkg -i "$deb_file" || sudo apt-get install -f -y
 
-green_text "Creating cursor:// protocol handler"
-sudo touch /usr/share/applications/cursor-url-handler.desktop
+green_text "Cleaning up temporary file"
+rm -f "$deb_file"
 
-green_text "Configuring cursor:// protocol handler"
-cat <<EOF | sudo tee /usr/share/applications/cursor-url-handler.desktop
-[Desktop Entry]
-Name=Cursor URL Handler
-Exec=/opt/cursor.appimage --no-sandbox --open-url %u
-Icon=/home/$USER/.local/share/takashi/ubuntu-24_04/applications/icons/cursor.png
-Type=Application
-NoDisplay=true
-MimeType=x-scheme-handler/cursor;
-EOF
-
-green_text "Updating desktop database and registering protocol"
-sudo update-desktop-database /usr/share/applications/
-sudo xdg-mime default cursor-url-handler.desktop x-scheme-handler/cursor
+green_text "Cursor installed successfully!"

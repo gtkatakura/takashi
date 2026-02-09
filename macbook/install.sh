@@ -46,6 +46,7 @@ brew install --cask aws-vpn-client
 brew install jq
 brew install yq
 brew install eza
+brew install fzf
 brew install zoxide
 brew install docker
 brew install docker-compose

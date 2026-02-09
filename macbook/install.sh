@@ -20,6 +20,22 @@ brew install --cask google-chrome
 brew install --cask firefox
 
 brew install --cask alacritty
+
+alacritty_config=~/.config/alacritty/alacritty.toml
+alacritty_import='import = ["~/.local/share/takashi/macbook/defaults/alacritty/rc.toml"]'
+
+mkdir -p ~/.config/alacritty
+
+if ! grep -Fq 'takashi/macbook/defaults/alacritty/rc.toml' "$alacritty_config" 2>/dev/null; then
+  if [ -f "$alacritty_config" ]; then
+    tmp=$(mktemp)
+    echo "$alacritty_import" | cat - "$alacritty_config" > "$tmp"
+    mv "$tmp" "$alacritty_config"
+  else
+    echo "$alacritty_import" > "$alacritty_config"
+  fi
+fi
+
 brew install --cask cursor
 brew install --cask visual-studio-code
 

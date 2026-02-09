@@ -1,0 +1,5 @@
+# Map Cmd+R to Ctrl+R (0x12) so fzf fuzzy history search works with Cmd+R
+[[keyboard.bindings]]
+key = "R"
+mods = "Command"
+chars = "\u0012"

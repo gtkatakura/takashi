@@ -6,6 +6,8 @@ A comprehensive development environment setup for Ubuntu 24.04 and macOS, provid
 
 ### Ubuntu 24.04
 
+> **Prerequisites:** [Omakub](https://omakub.org/) must be installed before running the setup script.
+
 ```bash
 bash <(wget -qO- ubuntu.gtkatakura.com)
 ```

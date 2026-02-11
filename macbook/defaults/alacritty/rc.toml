@@ -1,3 +1,4 @@
+[general]
 import = [
   "~/.local/share/takashi/macbook/defaults/alacritty/keybindings.toml",
 ]

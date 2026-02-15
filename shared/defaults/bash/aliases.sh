@@ -9,7 +9,7 @@ alias awslocal="AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_RE
 
 # Cursor aliases
 alias code='cursor'
-alias c='cursor .'
+alias c='cursor .' # overrides omarchy: c='opencode'
 
 # Git aliases
 alias gp='git pull'
@@ -22,7 +22,7 @@ alias gc='git checkout'
 alias gco='git commit'
 alias gls='git ls'
 alias gldr='git ldr'
-alias gcm='npx git-cz'
+alias gcm='npx git-cz' # overrides omarchy: gcm='git commit -m'
 alias gcwip='git commit -m "wip" --no-verify'
 
 function gor {
@@ -97,7 +97,7 @@ function reload() {
   fi
 }
 
-alias r='reload'
+alias r='reload' # overrides omarchy: r='rails'
 alias rr='reset && reload'
 
 function killport() {

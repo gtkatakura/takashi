@@ -5,8 +5,7 @@
 _dotnet_hook() {
   local previous_exit_status=$?;
 
-  if which dotnet > /dev/null; then
-    VERSION=$(dotnet --version)
+  if which dotnet > /dev/null && VERSION=$(dotnet --version 2>/dev/null); then
     export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_VER=$VERSION
     export DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR="$HOME/.local/share/mise/installs/dotnet-core/$VERSION/sdk/$VERSION/Sdks"
     export DOTNET_MSBUILD_SDK_RESOLVER_CLI_DIR="$HOME/.local/share/mise/installs/dotnet-core/$VERSION"

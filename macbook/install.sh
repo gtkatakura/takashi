@@ -19,20 +19,20 @@ brew install --cask brave-browser
 brew install --cask google-chrome
 brew install --cask firefox
 
-brew install --cask alacritty
+brew install --cask ghostty
 
-alacritty_config=~/.config/alacritty/alacritty.toml
-alacritty_import='import = ["~/.local/share/takashi/macbook/defaults/alacritty/rc.toml"]'
+ghostty_config=~/.config/ghostty/config
+ghostty_import='config-file = ~/.local/share/takashi/macbook/defaults/ghostty/config'
 
-mkdir -p ~/.config/alacritty
+mkdir -p ~/.config/ghostty
 
-if ! grep -Fq 'takashi/macbook/defaults/alacritty/rc.toml' "$alacritty_config" 2>/dev/null; then
-  if [ -f "$alacritty_config" ]; then
+if ! grep -Fq 'takashi/macbook/defaults/ghostty/config' "$ghostty_config" 2>/dev/null; then
+  if [ -f "$ghostty_config" ]; then
     tmp=$(mktemp)
-    echo "$alacritty_import" | cat - "$alacritty_config" > "$tmp"
-    mv "$tmp" "$alacritty_config"
+    echo "$ghostty_import" | cat - "$ghostty_config" > "$tmp"
+    mv "$tmp" "$ghostty_config"
   else
-    echo "$alacritty_import" > "$alacritty_config"
+    echo "$ghostty_import" > "$ghostty_config"
   fi
 fi
 

@@ -1,2 +1,5 @@
+# Global hotkey to open a new Ghostty window from anywhere
+keybind = global:super+shift+enter=new_window
+
 # Map Cmd+R to Ctrl+R (0x12) so fzf fuzzy history search works with Cmd+R
 keybind = super+r=text:\x12

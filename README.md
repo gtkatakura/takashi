@@ -1,8 +1,16 @@
 # Takashi Development Environment
 
-A comprehensive development environment setup for Ubuntu 24.04 and macOS, providing a curated collection of tools and applications for modern software development.
+A comprehensive development environment setup for Omarchy, Ubuntu 24.04, and macOS, providing a curated collection of tools and applications for modern software development.
 
 ## Quick Start
+
+### Omarchy (Arch Linux)
+
+> **Prerequisites:** [Omarchy](https://omarchy.org/) must be installed before running the setup script.
+
+```bash
+bash <(curl -fsSL omarchy.gtkatakura.com)
+```
 
 ### Ubuntu 24.04
 
@@ -20,13 +28,13 @@ bash <(curl -fsSL mac.gtkatakura.com)
 
 ## What's Included
 
-### 🌐 Web Browsers
+### Web Browsers
 
-- **Brave Browser** - Privacy-focused browser with built-in ad blocking and crypto wallet
+- **Brave Browser** - Privacy-focused browser with built-in ad blocking
 - **Google Chrome** (macOS) - Popular web browser by Google
 - **Firefox** (macOS) - Open-source browser by Mozilla
 
-### 💻 Code Editors & IDEs
+### Code Editors & IDEs
 
 - **Cursor** - AI-powered code editor built on VS Code
 - **Visual Studio Code** (macOS) - Popular code editor by Microsoft
@@ -34,7 +42,7 @@ bash <(curl -fsSL mac.gtkatakura.com)
 - **Android Studio** - Official IDE for Android development
 - **JetBrains Toolbox** - Application launcher for JetBrains IDEs
 
-### ⚡ Terminal Tools & Utilities
+### Terminal Tools & Utilities
 
 - **AWS CLI** - Command line interface for Amazon Web Services
 - **GitHub CLI (gh)** - Command line tool for GitHub
@@ -54,26 +62,25 @@ bash <(curl -fsSL mac.gtkatakura.com)
 - **lazygit** (macOS) - Terminal UI for git commands
 - **lazydocker** (macOS) - Terminal UI for docker commands
 
-### 🎨 Charm.sh CLI Tools
+### Charm.sh CLI Tools
 
-- **crush** - Create code screenshots
 - **freeze** - Generate images of code and terminal output
 - **glow** - Terminal markdown renderer
 - **mods** - AI for the command line
 - **sequin** - Generate sequences
 - **vhs** - Generate terminal recordings
 
-### 🗄️ Database Tools
+### Database Tools
 
 - **DBeaver Community** - Universal database tool and SQL client
 
-### 💬 Communication & Collaboration
+### Communication & Collaboration
 
 - **Discord** - Voice and text communication platform
 - **Slack** - Team communication and collaboration platform
 - **Zoom** (macOS) - Video conferencing software
 
-### 📝 Productivity & Note-taking
+### Productivity & Note-taking
 
 - **Raycast** (macOS) - Productivity tool and launcher
 - **SuperWhisper** (macOS) - Voice-to-text transcription tool
@@ -82,59 +89,40 @@ bash <(curl -fsSL mac.gtkatakura.com)
 - **Figma** (macOS) - Collaborative design tool
 - **Spotify** (macOS) - Music streaming service
 
-### 🔧 Development & API Tools
+### Development & API Tools
 
 - **Postman** - API development and testing platform
 - **Reactotron** - Desktop app for inspecting React JS and React Native projects
-- **Charles Proxy** - Web debugging proxy application
+- **Charles Proxy 4** - Web debugging proxy application
 
-### 🐳 Containerization & Virtualization
+### Containerization & Virtualization
 
 - **Docker** - Container platform
 - **Docker Compose** - Multi-container Docker applications
 - **OrbStack** (macOS) - Fast container and Linux VM runner for macOS
 - **VirtualBox** - Virtualization software
 - **QuickEmu** - Quickly create and run virtual machines
-- **QEMU-KVM** - Virtualization tools for Android emulation
+- **QEMU/KVM** - Virtualization tools for Android emulation
 
-### 📱 Mobile Development
+### Mobile Development
 
 - **Android Platform Tools** (macOS) - ADB and other Android development tools
 - **Vysor** - View and control Android devices
 - **Expo Orbit** (macOS) - Launch builds and manage simulators
 
-### 🎵 Entertainment & Media
+### AI & ML
 
 - **LM Studio** - Desktop app for running local language models
 
-### 🔐 Security & VPN
+### Security & VPN
 
 - **AWS VPN Client** - Client for AWS Client VPN endpoints
 - **1Password CLI** (macOS) - Command line interface for 1Password
 
-### 🖥️ System Tools & Audio
-
-- **PulseAudio Volume Control** - Audio volume control
-- **Alacritty** - GPU-accelerated terminal emulator
-
-### 📦 Package Managers
-
-- **Homebrew** - Package manager (macOS natively, Linux via Linuxbrew)
-- **Flatpak** - Application distribution framework
-- **Snap** - Package management system
-
-### 🎛️ GNOME Extensions (Ubuntu)
-
-- **Ubuntu App Indicators** - System tray support
-- **Tactile** - Window tiling extension
-- **TopHat** - System monitor extension
-- **OpenWeather Extension** - Weather information display
-
-### ⚙️ System Configuration
+### System Configuration
 
 - **Git aliases** - Predefined shortcuts for common git commands
 - **Keyboard layouts** - US and US International with Alt+Space switching
-- **GNOME settings** - Window management and workspace configuration
 - **Rosetta 2** (macOS) - Translation layer for x86 apps on Apple Silicon
 
 ## Manual Setup
@@ -149,9 +137,17 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 
 ## Platform Differences
 
+### Omarchy Features
+
+- Arch Linux with Hyprland compositor
+- Uses pacman and yay (AUR) for packages
+- Keyboard layout switching via hyprctl
+- Layers on top of Omarchy's defaults (starship prompt, ghostty terminal, etc.)
+- Many tools already provided by Omarchy (bat, eza, fzf, zoxide, lazygit, docker, mise, etc.)
+
 ### macOS Features
 
-- More comprehensive Homebrew-based installations
+- Comprehensive Homebrew-based installations
 - Enhanced productivity tools (Raycast, SuperWhisper)
 - Full office and creative suite support
 - Advanced terminal tools (eza, zoxide, lazygit, lazydocker)
@@ -162,16 +158,16 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 - Flatpak and Snap package support
 - KVM virtualization setup
 - Desktop environment customizations
-- AppImage support configuration
 
 ## Project Structure
 
 ```
 takashi/
-├── macbook/          # macOS-specific setup
-├── ubuntu-24_04/     # Ubuntu 24.04-specific setup
-├── shared/           # Cross-platform configurations
-└── cheat-sheets/     # Reference documentation
+├── omarchy/         # Omarchy (Arch Linux) setup
+├── macbook/         # macOS-specific setup
+├── ubuntu-24_04/    # Ubuntu 24.04-specific setup
+├── shared/          # Cross-platform configurations
+└── cheat-sheets/    # Reference documentation
 ```
 
 The project provides a complete development environment setup optimized for web development, mobile development (React Native/Android), and modern DevOps workflows.

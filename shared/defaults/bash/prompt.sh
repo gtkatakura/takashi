@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Use Starship with our own config when available
+if command -v starship &> /dev/null; then
+  export STARSHIP_CONFIG="$HOME/.local/share/takashi/shared/defaults/starship.toml"
+  eval "$(starship init bash)"
+  return 0 2>/dev/null || exit 0
+fi
+
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
 }

@@ -92,8 +92,8 @@ bash <(curl -fsSL mac.gtkatakura.com)
 ### Development & API Tools
 
 - **Postman** - API development and testing platform
-- **Reactotron** - Desktop app for inspecting React JS and React Native projects
-- **Charles Proxy 4** - Web debugging proxy application
+- **Reactotron** (macOS, Ubuntu) - Desktop app for inspecting React JS and React Native projects
+- **Charles Proxy 4** (macOS, Ubuntu) - Web debugging proxy application
 
 ### Containerization & Virtualization
 
@@ -116,7 +116,7 @@ bash <(curl -fsSL mac.gtkatakura.com)
 
 ### Security & VPN
 
-- **AWS VPN Client** - Client for AWS Client VPN endpoints
+- **AWS VPN Client** (macOS, Ubuntu) - Client for AWS Client VPN endpoints
 - **1Password CLI** (macOS) - Command line interface for 1Password
 
 ### System Configuration

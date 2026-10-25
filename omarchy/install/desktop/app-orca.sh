@@ -3,10 +3,13 @@
 # https://www.onorca.dev — official AppImage; kept in a user-writable dir so it can self-update
 ORCA_DIR="$HOME/.local/share/orca"
 
-green_text "Downloading Orca (AppImage)"
-mkdir -p "$ORCA_DIR"
-curl -fL "https://github.com/stablyai/orca/releases/latest/download/orca-linux.AppImage" -o "$ORCA_DIR/orca.AppImage"
-chmod +x "$ORCA_DIR/orca.AppImage"
+# Orca updates itself, so only download it on the first install
+if [ ! -x "$ORCA_DIR/orca.AppImage" ]; then
+  green_text "Downloading Orca (AppImage)"
+  mkdir -p "$ORCA_DIR"
+  curl -fL "https://github.com/stablyai/orca/releases/latest/download/orca-linux.AppImage" -o "$ORCA_DIR/orca.AppImage"
+  chmod +x "$ORCA_DIR/orca.AppImage"
+fi
 
 green_text "Extracting Orca icon"
 (cd "$ORCA_DIR" && rm -rf squashfs-root &&

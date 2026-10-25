@@ -20,6 +20,9 @@ source ~/.local/share/takashi/omarchy/install/terminal.sh
 # Install desktop tools
 source ~/.local/share/takashi/omarchy/install/desktop.sh
 
+# Review leftover build dependencies and -debug packages from AUR installs
+omarchy-update-orphan-pkgs
+
 # Optional reboot
 if gum confirm "Ready to reboot for all settings to take effect?"; then
   sudo reboot

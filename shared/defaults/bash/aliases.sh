@@ -11,6 +11,9 @@ alias awslocal="AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_RE
 alias code='cursor'
 alias c='cursor .' # overrides omarchy: c='opencode --auto'
 
+# Claude Code aliases
+alias cc='claude --dangerously-skip-permissions'
+
 # Git aliases
 alias gp='git pull'
 alias gs='git status'

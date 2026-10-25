@@ -123,7 +123,9 @@ bash <(curl -fsSL mac.gtkatakura.com)
 ### System Configuration
 
 - **Git aliases** - Predefined shortcuts for common git commands
-- **Keyboard layouts** - US and US International with Alt+Space switching
+- **Shell aliases** - git, docker, Cursor (`c`), Claude Code without permission prompts (`cc`) and more
+- **Keyboard layouts** - US and US International with Alt+Space switching (`kc` / `kt` to pick one)
+- **Numpad workspaces** (Omarchy) - Super + numpad switches workspaces, with Shift / Shift+Alt to move windows
 - **Rosetta 2** (macOS) - Translation layer for x86 apps on Apple Silicon
 
 ## Manual Setup
@@ -133,18 +135,18 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 1. **Brave Sync** - Sync browser settings and bookmarks
 2. **VSCode Settings Sync** - Sync editor preferences and extensions
 3. **1Password for Git** - Set up SSH key management ([Tutorial](https://developer.1password.com/docs/ssh/manage-keys/))
-4. **Git Credentials** - Authenticate with GitHub (`gh auth login`)
+4. **Git Credentials** - Authenticate with GitHub (`gh auth login`), then install gh-dash on Omarchy
 5. **File Watcher Limits** - Increase system file watcher limits for development
 
 ## Platform Differences
 
 ### Omarchy Features
 
-- Arch Linux with Hyprland compositor
-- Uses pacman and yay (AUR) for packages
-- Keyboard layout switching via hyprctl
-- Layers on top of Omarchy's defaults (starship prompt, ghostty terminal, etc.)
-- Many tools already provided by Omarchy (bat, eza, fzf, zoxide, lazygit, docker, mise, etc.)
+- Arch Linux with Hyprland compositor (Omarchy 4+)
+- Packages via Omarchy's `omarchy-pkg-add` / `omarchy-pkg-aur-add` (pacman, the `[omarchy]` repo and AUR), preferring prebuilt packages
+- Keyboard layouts and numpad bindings as Lua files loaded from Hyprland's `input.lua` / `bindings.lua`
+- Layers on top of Omarchy's defaults (starship prompt, ghostty terminal, Discord webapp, etc.)
+- Many tools already provided by Omarchy (bat, eza, fzf, zoxide, lazygit, docker, mise, and Claude Code, Codex and gh via mise)
 
 ### macOS Features
 

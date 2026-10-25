@@ -10,3 +10,8 @@ omarchy-pkg-add qemu-full libvirt virt-manager
 
 blue_text "Adding user to kvm group"
 sudo usermod -aG kvm "$USER"
+
+# virt-manager talks to libvirtd; socket activation keeps it off until it's used
+blue_text "Enabling libvirt for virt-manager"
+sudo systemctl enable libvirtd.socket
+sudo usermod -aG libvirt "$USER"

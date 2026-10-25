@@ -1,21 +1,11 @@
 #!/bin/bash
 
-# Keyboard configuration for Hyprland
-#
-# This sets the keyboard layouts at runtime via hyprctl.
-# For persistent config, add this to ~/.config/hypr/hyprland.conf:
-#
-#   input {
-#     kb_layout = us,us
-#     kb_variant = ,intl
-#     kb_options = grp:alt_space_toggle
-#   }
+INPUT_FILE="$HOME/.config/hypr/input.lua"
+DOFILE_LINE='dofile(os.getenv("HOME") .. "/.local/share/takashi/omarchy/defaults/hypr/keyboard.lua")'
 
-if command -v hyprctl &>/dev/null && hyprctl monitors &>/dev/null 2>&1; then
-  green_text "Setting keyboard layouts for Hyprland"
-  hyprctl keyword input:kb_layout "us,us"
-  hyprctl keyword input:kb_variant ",intl"
-  hyprctl keyword input:kb_options "grp:alt_space_toggle"
+if grep -qF "$DOFILE_LINE" "$INPUT_FILE" 2>/dev/null; then
+  green_text "Keyboard layouts already configured — skipping"
 else
-  yellow_text "Hyprland not running — skipping keyboard setup (configure manually in hyprland.conf)"
+  green_text "Adding keyboard layouts (us + us intl, Alt+Space) to Hyprland"
+  printf '\n-- Keyboard layouts (takashi)\n%s\n' "$DOFILE_LINE" >>"$INPUT_FILE"
 fi

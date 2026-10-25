@@ -1,25 +1,12 @@
 #!/bin/bash
 
-# Keyboard layout switching for Hyprland
-#
-# Persistent config should be set in ~/.config/hypr/hyprland.conf:
-#
-#   input {
-#     kb_layout = us,us
-#     kb_variant = ,intl
-#     kb_options = grp:alt_space_toggle
-#   }
-#
-# These functions switch layouts at runtime:
-
+# Switch between the layouts set in omarchy/defaults/hypr/keyboard.lua (also toggled with Alt+Space)
 function keyboard_code {
-  hyprctl keyword input:kb_layout "us"
-  hyprctl keyword input:kb_variant ""
+  hyprctl switchxkblayout all 0 >/dev/null
 }
 
 function keyboard_text {
-  hyprctl keyword input:kb_layout "us"
-  hyprctl keyword input:kb_variant "intl"
+  hyprctl switchxkblayout all 1 >/dev/null
 }
 
 alias kc='keyboard_code'

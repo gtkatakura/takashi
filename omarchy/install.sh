@@ -11,6 +11,10 @@ source ~/.local/share/takashi/shared/defaults/bash/utils.sh
 # Ask for sudo once and keep it alive through long downloads and AUR installs
 source omarchy-sudo-keepalive
 
+# A fresh Omarchy (installed offline from the ISO) has no pacman sync databases yet,
+# and installing on top of an out-of-date system risks partial upgrades: update first
+omarchy-update -y
+
 echo "Installing terminal and desktop tools..."
 
 # Install terminal tools

@@ -5,8 +5,8 @@
 
 # Use JetBrains Toolbox to install Android Studio
 
-green_text "Installing qemu-full for Android emulation (using pacman)"
-sudo pacman -S --noconfirm qemu-full libvirt virt-manager
+green_text "Installing qemu-full for Android emulation"
+omarchy-pkg-add qemu-full libvirt virt-manager
 
 blue_text "Adding user to kvm group"
 sudo usermod -aG kvm "$USER"

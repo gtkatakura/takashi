@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing Cursor (using yay)"
-yay -S --noconfirm cursor-bin
+green_text "Installing Cursor"
+omarchy-pkg-add cursor-bin

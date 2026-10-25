@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing Brave Browser (using yay)"
-yay -S --noconfirm brave-bin
+green_text "Installing Brave Browser"
+omarchy-pkg-add brave-bin

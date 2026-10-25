@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing yq (using pacman)"
-sudo pacman -S --noconfirm yq
+green_text "Installing yq"
+omarchy-pkg-add yq

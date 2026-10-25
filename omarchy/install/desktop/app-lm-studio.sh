@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing LM Studio (using yay)"
-yay -S --noconfirm lm-studio
+green_text "Installing LM Studio"
+omarchy-pkg-aur-add lm-studio-bin

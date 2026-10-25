@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing pastel (using yay)"
-yay -S --noconfirm pastel
+green_text "Installing pastel"
+omarchy-pkg-add pastel

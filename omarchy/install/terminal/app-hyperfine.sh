@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing hyperfine (using pacman)"
-sudo pacman -S --noconfirm hyperfine
+green_text "Installing hyperfine"
+omarchy-pkg-add hyperfine

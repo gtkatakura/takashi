@@ -18,4 +18,6 @@ source ~/.local/share/takashi/omarchy/install/terminal.sh
 source ~/.local/share/takashi/omarchy/install/desktop.sh
 
 # Optional reboot
-gum confirm "Ready to reboot for all settings to take effect?" && sudo reboot
+if gum confirm "Ready to reboot for all settings to take effect?"; then
+  sudo reboot
+fi

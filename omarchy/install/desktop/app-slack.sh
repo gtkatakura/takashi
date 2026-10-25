@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing Slack (using yay)"
-yay -S --noconfirm slack-desktop
+green_text "Installing Slack"
+omarchy-pkg-add slack-desktop

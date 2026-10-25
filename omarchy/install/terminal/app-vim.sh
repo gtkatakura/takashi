@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing vim (using pacman)"
-sudo pacman -S --noconfirm vim
+green_text "Installing vim"
+omarchy-pkg-add vim

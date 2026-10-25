@@ -1,4 +1,4 @@
 #!/bin/bash
 
 green_text "Installing Comby"
-yay -S --noconfirm comby-bin
+omarchy-pkg-aur-add comby-bin

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing Heroku CLI (using yay)"
-yay -S --noconfirm heroku-cli-bin
+green_text "Installing Heroku CLI"
+omarchy-pkg-aur-add heroku-cli-bin

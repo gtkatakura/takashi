@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing AWS CLI v2 (using pacman)"
-sudo pacman -S --noconfirm aws-cli-v2
+green_text "Installing AWS CLI v2"
+omarchy-pkg-add aws-cli-v2

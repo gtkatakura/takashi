@@ -1,4 +1,5 @@
 #!/bin/bash
 
-green_text "Installing VirtualBox (using pacman)"
-sudo pacman -S --noconfirm virtualbox virtualbox-host-modules-arch
+# virtualbox-host-dkms builds the modules for linux-omarchy (virtualbox-host-modules-arch only targets stock linux)
+green_text "Installing VirtualBox"
+omarchy-pkg-add virtualbox virtualbox-host-dkms

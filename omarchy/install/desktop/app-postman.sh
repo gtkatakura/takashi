@@ -1,4 +1,4 @@
 #!/bin/bash
 
-green_text "Installing Postman (using yay)"
-yay -S --noconfirm postman-bin
+green_text "Installing Postman"
+omarchy-pkg-aur-add postman-bin

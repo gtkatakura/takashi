@@ -37,6 +37,7 @@ bash <(curl -fsSL mac.gtkatakura.com)
 ### Code Editors & IDEs
 
 - **Cursor** - AI-powered code editor built on VS Code
+- **Orca** (Omarchy) - Agent development environment for running coding agents in parallel
 - **Visual Studio Code** (macOS) - Popular code editor by Microsoft
 - **Vim** - Command-line text editor
 - **Android Studio** - Official IDE for Android development

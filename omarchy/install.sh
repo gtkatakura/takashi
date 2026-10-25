@@ -8,6 +8,9 @@ source ~/.local/share/takashi/omarchy/check-version.sh
 
 source ~/.local/share/takashi/shared/defaults/bash/utils.sh
 
+# Ask for sudo once and keep it alive through long downloads and AUR installs
+source omarchy-sudo-keepalive
+
 echo "Installing terminal and desktop tools..."
 
 # Install terminal tools

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 BINDINGS_FILE="$HOME/.config/hypr/bindings.lua"
-DOFILE_LINE='dofile(os.getenv("HOME") .. "/.local/share/takashi/omarchy/defaults/hypr/numpad.lua")'
+# Guarded so Hyprland's config keeps loading if takashi is ever removed
+DOFILE_LINE='do local f = os.getenv("HOME") .. "/.local/share/takashi/omarchy/defaults/hypr/numpad.lua"; local h = io.open(f, "r"); if h then h:close(); dofile(f) end end'
 
 if grep -qF "$DOFILE_LINE" "$BINDINGS_FILE" 2>/dev/null; then
   green_text "Numpad workspace bindings already configured — skipping"

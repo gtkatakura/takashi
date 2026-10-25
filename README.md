@@ -88,7 +88,7 @@ bash <(curl -fsSL mac.gtkatakura.com)
 - **Obsidian** (macOS) - Knowledge base and note-taking app
 - **Notion** (macOS) - All-in-one workspace for notes and collaboration
 - **Figma** (macOS) - Collaborative design tool
-- **Spotify** (macOS) - Music streaming service
+- **Spotify** (macOS, Omarchy) - Music streaming service
 
 ### Development & API Tools
 

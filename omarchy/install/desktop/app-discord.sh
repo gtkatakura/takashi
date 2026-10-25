@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# Discord as an Omarchy webapp (same launcher Omarchy ships by default)
-green_text "Installing Discord webapp"
-omarchy-webapp-install "Discord" "https://discord.com/channels/@me" omarchy-discord
+# Discord as an Omarchy webapp: Omarchy ships it by default, so only recreate it if it was removed
+if [ ! -f ~/.local/share/applications/Discord.desktop ]; then
+  green_text "Installing Discord webapp"
+  omarchy-webapp-install "Discord" "https://discord.com/channels/@me" omarchy-discord
+fi
 
 # Native Discord app — kept for reference until the webapp proves good enough
 # green_text "Removing Discord webapp"

@@ -13,6 +13,7 @@ alias c='cursor .' # overrides omarchy: c='opencode --auto'
 
 # Claude Code aliases
 alias cc='claude --dangerously-skip-permissions'
+alias ccc='cc --continue'
 
 # Git aliases
 alias gp='git pull'

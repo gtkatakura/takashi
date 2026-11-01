@@ -7,8 +7,12 @@ accounts_dir="$HOME/.steam-accounts"
 applications="$HOME/.local/share/applications"
 
 accounts() {
+  local dir name
   echo labs
-  find "$accounts_dir" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' 2>/dev/null | sort || true
+  for dir in "$accounts_dir"/*/; do
+    name="$(basename "$dir")"
+    ! account_exists "$name" || echo "$name"
+  done
 }
 
 usage() {
@@ -23,6 +27,7 @@ fail() {
   exit 1
 }
 
+# Names are lowercase ASCII, and cannot be labs or a subcommand: those would never reach the account
 valid_name() {
   # C locale: otherwise [a-z] also matches accented letters
   local LC_ALL=C
@@ -70,8 +75,9 @@ remove_account() {
   [ "$answer" = CONFIRM ] || fail "$1 not removed"
   # Again: it may have started while the prompt was open
   ! steam_running "$home" || fail "close the $1 Steam first"
-  rm -rf -- "$home"
+  # The launcher entry goes first, so nothing can open the account while it is being deleted
   rm -f "$applications/steam-$1.desktop"
+  rm -rf -- "$home"
 }
 
 # A running Steam ignores a second launch while one of its games runs, so open its window from its
@@ -86,12 +92,13 @@ show_window() {
     pid=$(busctl --user status "$service" 2>/dev/null | sed -n 's/^PID=//p')
     is_steam_proxy "$pid" "$1" || continue
 
-    # By label, never by position: Exit Steam sits in the same menu. Steam translates the labels
-    id=$(gdbus call --session --dest "$service" --object-path "$path/Menu" --method com.canonical.dbusmenu.GetLayout 0 1 '[]' |
-      sed 's/<(/\n<(/g' | grep -E "'label': <'(Library|Biblioteca)'>" | grep -oE '^<\([0-9]+' | tr -d '<(')
+    # By label, never by position: Exit Steam sits in the same menu. Steam translates the labels, and
+    # the recent games above the first separator can have any name, so they are skipped
+    id=$(busctl --user --json=short call "$service" "$path/Menu" com.canonical.dbusmenu GetLayout iias 0 1 0 | jq -r '
+      .data[1][2] | map(.data) | (map(.[1].type.data == "separator") | index(true)) as $first
+      | .[$first:][] | select(.[1].label.data | IN("Library", "Biblioteca")) | .[0]')
     [ -n "$id" ] || return 1
-    gdbus call --session --dest "$service" --object-path "$path/Menu" --method com.canonical.dbusmenu.Event \
-      "$id" "'clicked'" '<int32 0>' 0 >/dev/null
+    busctl --user call "$service" "$path/Menu" com.canonical.dbusmenu Event isvu "$id" clicked i 0 0
     return
   done
   return 1

@@ -20,6 +20,7 @@ sed 's/^Name=Steam$/Name=Steam - labs/' "$HOME/.local/share/flatpak/exports/shar
 
 # Not copied from the export: its actions would open the labs Steam
 for account in jarvis vision; do
+  mkdir -p "$HOME/.steam-accounts/$account"
   cat >"$APPLICATIONS/steam-$account.desktop" <<DESKTOP
 [Desktop Entry]
 Name=Steam - $account

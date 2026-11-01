@@ -6,7 +6,9 @@ steam-account jarvis -applaunch 322330 # launch a game by app id
 steam-account jarvis -shutdown        # close it cleanly
 ```
 
-Add an account: `steam-account <name>` (the first launch downloads ~2.5 GB of Steam), log in with "remember me", then add it to the account list in `omarchy/install/desktop/app-steam.sh` and re-run it for its launcher entry:
+`steam-account` only opens accounts that exist; with no name or an unknown one it lists them.
+
+Add an account: add it to the account list in `omarchy/install/desktop/app-steam.sh`, re-run that file, then open `steam-account <name>` (the first launch downloads ~2.5 GB of Steam) and log in with "remember me":
 
 ```bash
 source ~/.local/share/takashi/shared/defaults/bash/utils.sh

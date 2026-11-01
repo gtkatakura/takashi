@@ -21,9 +21,9 @@ else
   echo "Only installing terminal tools..."
 fi
 
-# Install terminal tools
-source ~/.local/share/takashi/shared/install/terminal.sh
+# Install terminal tools (shared last: it needs the jq installed by the Ubuntu ones)
 source ~/.local/share/takashi/ubuntu-24_04/install/terminal.sh
+source ~/.local/share/takashi/shared/install/terminal.sh
 
 if $RUNNING_GNOME; then
   # Install desktop tools and tweaks

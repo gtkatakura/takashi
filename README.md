@@ -124,6 +124,7 @@ bash <(curl -fsSL mac.gtkatakura.com)
 
 - **Git aliases** - Predefined shortcuts for common git commands
 - **Shell aliases** - git, docker, Cursor (`c`), Claude Code without permission prompts (`cc`) and more
+- **Claude Code status line** - Model, effort, git state, session time, context, cost and lines changed, kept in `shared/defaults/claude/statusline.sh`
 - **Keyboard layouts** - US and US International with Alt+Space switching (`kc` / `kt` to pick one)
 - **Numpad workspaces** (Omarchy) - Super + numpad switches workspaces, with Shift / Shift+Alt to move windows
 - **Rosetta 2** (macOS) - Translation layer for x86 apps on Apple Silicon

@@ -73,6 +73,8 @@ brew install gh
 brew install lazygit
 brew install lazydocker
 
+source ~/.local/share/takashi/shared/install/terminal.sh
+
 sudo softwareupdate --instal-rosetta
 
 brew install charmbracelet/tap/crush

@@ -8,6 +8,8 @@ steam-account jarvis -shutdown        # close it cleanly
 
 `steam-account` only opens accounts that exist; with no name or an unknown one it lists them.
 
+While a game runs on an account, its Steam ignores arguments such as `-applaunch` and `steam://` links. `steam-account <name>` with no arguments still opens the window, through the account's tray icon.
+
 Add an account: add it to the account list in `omarchy/install/desktop/app-steam.sh`, re-run that file, then open `steam-account <name>` (the first launch downloads ~2.5 GB of Steam) and log in with "remember me":
 
 ```bash

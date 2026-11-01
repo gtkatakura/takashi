@@ -11,16 +11,44 @@ usage() {
   exit 1
 }
 
+# A running Steam ignores a second launch while one of its games runs, so open its window from its
+# tray icon. The icons look the same: the one to click is owned by a Flatpak proxy with this HOME.
+show_window() {
+  local item service path pid id
+  for item in $(busctl --user --json=short get-property org.kde.StatusNotifierWatcher /StatusNotifierWatcher \
+    org.kde.StatusNotifierWatcher RegisteredStatusNotifierItems 2>/dev/null | jq -r '.data[]'); do
+    service="${item%%/*}"
+    path="/${item#*/}"
+    [[ "$path" == */steam ]] || continue
+    pid=$(busctl --user status "$service" 2>/dev/null | sed -n 's/^PID=//p')
+    [ "$(cat "/proc/$pid/comm" 2>/dev/null)" = xdg-dbus-proxy ] || continue
+    tr '\0' '\n' <"/proc/$pid/environ" 2>/dev/null | grep -qx "HOME=$1" || continue
+
+    # By label, never by position: Exit Steam sits in the same menu
+    id=$(gdbus call --session --dest "$service" --object-path "$path/Menu" --method com.canonical.dbusmenu.GetLayout 0 1 '[]' |
+      sed 's/<(/\n<(/g' | grep -F "'label': <'Library'>" | grep -oE '^<\([0-9]+' | tr -d '<(')
+    [ -n "$id" ] || return 1
+    gdbus call --session --dest "$service" --object-path "$path/Menu" --method com.canonical.dbusmenu.Event \
+      "$id" "'clicked'" '<int32 0>' 0 >/dev/null
+    return
+  done
+  return 1
+}
+
 [ $# -gt 0 ] || usage
 name="$1"
 shift
 
-# labs is the default Flatpak Steam, which keeps the real HOME
-[ "$name" = labs ] && exec flatpak run --user com.valvesoftware.Steam "$@"
+if [ "$name" = labs ]; then
+  # labs is the default Flatpak Steam, which keeps the real HOME
+  home="$HOME"
+else
+  # A typo must not bootstrap a new Steam: accounts are created by app-steam.sh
+  home="$accounts_dir/$name"
+  [[ "$name" =~ ^[a-z0-9][a-z0-9_.-]*$ && -d "$home" ]] || usage
+fi
 
-# A typo must not bootstrap a new Steam: accounts are created by app-steam.sh
-home="$accounts_dir/$name"
-[[ "$name" =~ ^[a-z0-9][a-z0-9_.-]*$ && -d "$home" ]] || usage
+[ $# -eq 0 ] && show_window "$home" && exit 0
 
 # XDG_DATA_HOME keeps the real per-user Flatpak installation visible under the new HOME
 exec env HOME="$home" XDG_DATA_HOME="$HOME/.local/share" flatpak run --user com.valvesoftware.Steam "$@"

@@ -15,6 +15,8 @@ source ~/.local/share/takashi/shared/defaults/bash/utils.sh
 source ~/.local/share/takashi/omarchy/install/desktop/app-steam.sh
 ```
 
+Remove an account: take it off that list, then delete `~/.steam-accounts/<name>` and `~/.local/share/applications/steam-<name>.desktop`.
+
 Copy a game between accounts without downloading it (btrfs only, the target account needs the license and its Steam closed; the first launch still fetches the Steam Linux Runtimes):
 
 ```bash

@@ -7,7 +7,7 @@ accounts_dir="$HOME/.steam-accounts"
 
 usage() {
   echo "usage: steam-account <name> [steam args...]" >&2
-  echo "accounts:" labs $(ls "$accounts_dir" 2>/dev/null) >&2
+  echo "accounts: labs $(find "$accounts_dir" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' 2>/dev/null | sort | xargs)" >&2
   exit 1
 }
 
@@ -20,7 +20,7 @@ shift
 
 # A typo must not bootstrap a new Steam: accounts are created by app-steam.sh
 home="$accounts_dir/$name"
-[ -d "$home" ] || usage
+[[ "$name" =~ ^[a-z0-9][a-z0-9_.-]*$ && -d "$home" ]] || usage
 
 # XDG_DATA_HOME keeps the real per-user Flatpak installation visible under the new HOME
 exec env HOME="$home" XDG_DATA_HOME="$HOME/.local/share" flatpak run --user com.valvesoftware.Steam "$@"

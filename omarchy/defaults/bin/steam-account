@@ -1,14 +1,56 @@
 #!/bin/bash
 # One Flatpak Steam per account: each account gets its own HOME under ~/.steam-accounts/<name>,
-# so sessions, config and ~/.steam never collide. Usage: steam-account <name> [steam args...]
+# so sessions, config and ~/.steam never collide.
 set -euo pipefail
 
 accounts_dir="$HOME/.steam-accounts"
+applications="$HOME/.local/share/applications"
+
+accounts() {
+  echo labs
+  find "$accounts_dir" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' 2>/dev/null | sort || true
+}
 
 usage() {
   echo "usage: steam-account <name> [steam args...]" >&2
-  echo "accounts: labs $(find "$accounts_dir" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' 2>/dev/null | sort | xargs)" >&2
+  echo "       steam-account list | add <name> | remove <name>" >&2
+  echo "accounts: $(accounts | xargs)" >&2
   exit 1
+}
+
+fail() {
+  echo "steam-account: $1" >&2
+  exit 1
+}
+
+valid_name() {
+  [[ "$1" =~ ^[a-z0-9][a-z0-9_.-]*$ && ! "$1" =~ ^(labs|list|add|remove)$ ]]
+}
+
+add_account() {
+  valid_name "$1" || fail "invalid account name: $1"
+  mkdir -p "$accounts_dir/$1"
+  # No actions: the ones in the Flatpak export run without the account's HOME and would open labs
+  cat >"$applications/steam-$1.desktop" <<DESKTOP
+[Desktop Entry]
+Name=Steam - $1
+Comment=Steam on the $1 account
+Exec=$HOME/.local/bin/steam-account $1
+Icon=com.valvesoftware.Steam
+Type=Application
+Categories=Game;
+DESKTOP
+  update-desktop-database "$applications" &>/dev/null || true
+  echo "Added $1: open it with steam-account $1 and log in with \"remember me\""
+}
+
+remove_account() {
+  valid_name "$1" && [ -d "$accounts_dir/$1" ] || fail "unknown account: $1"
+  ! pgrep -u "$(id -u)" -f "$accounts_dir/$1/" >/dev/null || fail "close the $1 Steam first"
+  gum confirm "Delete $accounts_dir/$1 and its installed games?" || exit 1
+  rm -rf -- "${accounts_dir:?}/$1"
+  rm -f "$applications/steam-$1.desktop"
+  update-desktop-database "$applications" &>/dev/null || true
 }
 
 # A running Steam ignores a second launch while one of its games runs, so open its window from its
@@ -35,7 +77,22 @@ show_window() {
   return 1
 }
 
-[ $# -gt 0 ] || usage
+case "${1:-}" in
+  "") usage ;;
+  list)
+    accounts
+    exit
+    ;;
+  add)
+    add_account "${2:-}"
+    exit
+    ;;
+  remove)
+    remove_account "${2:-}"
+    exit
+    ;;
+esac
+
 name="$1"
 shift
 
@@ -43,9 +100,9 @@ if [ "$name" = labs ]; then
   # labs is the default Flatpak Steam, which keeps the real HOME
   home="$HOME"
 else
-  # A typo must not bootstrap a new Steam: accounts are created by app-steam.sh
+  # A typo must not bootstrap a new Steam: accounts only come from steam-account add
   home="$accounts_dir/$name"
-  [[ "$name" =~ ^[a-z0-9][a-z0-9_.-]*$ && -d "$home" ]] || usage
+  { valid_name "$name" && [ -d "$home" ]; } || usage
 fi
 
 [ $# -eq 0 ] && show_window "$home" && exit 0

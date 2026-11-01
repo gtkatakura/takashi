@@ -6,18 +6,17 @@ steam-account jarvis -applaunch 322330 # launch a game by app id
 steam-account jarvis -shutdown        # close it cleanly
 ```
 
-`steam-account` only opens accounts that exist; with no name or an unknown one it lists them.
+`steam-account` only opens accounts that exist; with no name or an unknown one it shows the usage and the accounts.
 
 While a game runs on an account, its Steam ignores arguments such as `-applaunch` and `steam://` links. `steam-account <name>` with no arguments still opens the window, through the account's tray icon.
 
-Add an account: add it to the account list in `omarchy/install/desktop/app-steam.sh`, re-run that file, then open `steam-account <name>` (the first launch downloads ~2.5 GB of Steam) and log in with "remember me":
+Manage accounts. `add` creates the folder and the launcher entry; the first launch downloads ~2.5 GB of Steam, then log in with "remember me". `remove` deletes the account's folder, with its installed games, and its launcher entry:
 
 ```bash
-source ~/.local/share/takashi/shared/defaults/bash/utils.sh
-source ~/.local/share/takashi/omarchy/install/desktop/app-steam.sh
+steam-account list
+steam-account add friday
+steam-account remove friday
 ```
-
-Remove an account: take it off that list, then delete `~/.steam-accounts/<name>` and `~/.local/share/applications/steam-<name>.desktop`.
 
 Copy a game between accounts without downloading it (btrfs only, the target account needs the license and its Steam closed; the first launch still fetches the Steam Linux Runtimes):
 

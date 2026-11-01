@@ -15,22 +15,8 @@ ln -sf "$HOME/.local/share/takashi/omarchy/defaults/bin/steam-account" "$HOME/.l
 
 # The default Flatpak Steam is the labs account: same desktop id, so this shadows the Flatpak export.
 # Only the first Exec goes through steam-account: the ones after it are the actions, which stay on labs
-green_text "Creating Steam desktop entries"
+green_text "Creating the labs Steam desktop entry"
 sed -e 's/^Name=Steam$/Name=Steam - labs/' \
   -e "0,/^Exec=/s|^Exec=.*|Exec=$HOME/.local/bin/steam-account labs %U|" \
   "$HOME/.local/share/flatpak/exports/share/applications/$STEAM_APP.desktop" >"$APPLICATIONS/$STEAM_APP.desktop"
-
-# Not copied from the export: its actions would open the labs Steam
-for account in jarvis vision; do
-  mkdir -p "$HOME/.steam-accounts/$account"
-  cat >"$APPLICATIONS/steam-$account.desktop" <<DESKTOP
-[Desktop Entry]
-Name=Steam - $account
-Comment=Steam on the $account account
-Exec=$HOME/.local/bin/steam-account $account
-Icon=$STEAM_APP
-Type=Application
-Categories=Game;
-DESKTOP
-done
 update-desktop-database "$APPLICATIONS" &>/dev/null || true

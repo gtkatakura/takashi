@@ -115,6 +115,10 @@ bash <(curl -fsSL mac.gtkatakura.com)
 
 - **LM Studio** - Desktop app for running local language models
 
+### Gaming
+
+- **Steam** (Omarchy) - Flatpak Steam, one instance per account side by side with `steam-account <name>`, each with its own launcher entry ([cheat sheet](cheat-sheets/steam.md))
+
 ### Security & VPN
 
 - **AWS VPN Client** (macOS, Ubuntu) - Client for AWS Client VPN endpoints
@@ -138,6 +142,7 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 3. **1Password for Git** - Set up SSH key management ([Tutorial](https://developer.1password.com/docs/ssh/manage-keys/))
 4. **Git Credentials** - Authenticate with GitHub (`gh auth login`), then install gh-dash on Omarchy
 5. **File Watcher Limits** - Increase system file watcher limits for development
+6. **Steam Accounts** (Omarchy) - Log in once on each account's Steam, with "remember me"
 
 ## Platform Differences
 

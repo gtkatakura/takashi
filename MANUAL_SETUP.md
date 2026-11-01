@@ -7,3 +7,4 @@
 4. Git Credentials: gh auth login
   1. gh-dash (Omarchy): gh extension install dlvhdr/gh-dash
 5. echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+6. Steam accounts (Omarchy): log in once with "remember me" on each one (steam-account labs, jarvis, vision)

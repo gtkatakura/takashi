@@ -39,6 +39,7 @@ eval "$(jq -r '
     cost=\(.cost.total_cost_usd // 0)
     added=\(.cost.total_lines_added | compact)
     removed=\(.cost.total_lines_removed | compact)
+    week=\(.rate_limits.seven_day.used_percentage | if . == null then "" else "\(whole)%" end)
   "
 ')"
 
@@ -68,3 +69,9 @@ separator
 paint '38;2;254;89;92' "$(printf '🤑 $%.2f ' "$cost")"
 separator
 printf '➕ %s ➖ %s ' "$added" "$removed"
+
+# Only subscribers get rate limits, and only after the first API response
+if [ -n "$week" ]; then
+  separator
+  paint '38;2;180;142;173' "📅 7d $week"
+fi

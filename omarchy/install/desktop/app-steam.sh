@@ -10,7 +10,7 @@ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/fl
 flatpak info --user "$STEAM_APP" &>/dev/null || flatpak install --user -y --noninteractive flathub "$STEAM_APP"
 
 green_text "Adding steam-account"
-mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/.local/bin" "$APPLICATIONS"
 ln -sf "$HOME/.local/share/takashi/omarchy/defaults/bin/steam-account" "$HOME/.local/bin/steam-account"
 
 # The default Flatpak Steam is the labs account: same desktop id, so this shadows the Flatpak export.

@@ -10,7 +10,7 @@ steam-account jarvis -shutdown        # close it cleanly
 
 While a game runs on an account, its Steam ignores arguments such as `-applaunch` and `steam://` links. `steam-account <name>` with no arguments still opens the window, through the account's tray icon.
 
-Manage accounts. `add` creates the folder and the launcher entry; the first launch downloads ~2.5 GB of Steam, then log in with "remember me". `remove` deletes the account's folder, with its installed games, and its launcher entry:
+Manage accounts. `add` creates the folder and the launcher entry; the first launch downloads ~2.5 GB of Steam, then log in with "remember me". `remove` asks you to type `CONFIRM`, then deletes the account's folder, with its installed games, and its launcher entry:
 
 ```bash
 steam-account list

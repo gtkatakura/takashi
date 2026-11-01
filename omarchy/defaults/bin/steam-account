@@ -47,7 +47,9 @@ DESKTOP
 remove_account() {
   valid_name "$1" && [ -d "$accounts_dir/$1" ] || fail "unknown account: $1"
   ! pgrep -u "$(id -u)" -f "$accounts_dir/$1/" >/dev/null || fail "close the $1 Steam first"
-  gum confirm "Delete $accounts_dir/$1 and its installed games?" || exit 1
+  local answer=""
+  read -rp "Delete $accounts_dir/$1 and its installed games? Type CONFIRM: " answer || true
+  [ "$answer" = CONFIRM ] || fail "$1 not removed"
   rm -rf -- "${accounts_dir:?}/$1"
   rm -f "$applications/steam-$1.desktop"
   update-desktop-database "$applications" &>/dev/null || true

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 STEAM_APP=com.valvesoftware.Steam
-APPLICATIONS="$HOME/.local/share/applications"
+DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+APPLICATIONS="$DATA_HOME/applications"
 
 green_text "Installing Steam (Flatpak)"
 omarchy-pkg-add flatpak
@@ -16,7 +17,9 @@ ln -sf "$HOME/.local/share/takashi/omarchy/defaults/bin/steam-account" "$HOME/.l
 # The default Flatpak Steam is the labs account: same desktop id, so this shadows the Flatpak export.
 # Only the first Exec goes through steam-account: the ones after it are the actions, which stay on labs
 green_text "Creating the labs Steam desktop entry"
+tmp=$(mktemp)
 sed -e 's/^Name=Steam$/Name=Steam - labs/' \
   -e "0,/^Exec=/s|^Exec=.*|Exec=$HOME/.local/bin/steam-account labs %U|" \
-  "$HOME/.local/share/flatpak/exports/share/applications/$STEAM_APP.desktop" >"$APPLICATIONS/$STEAM_APP.desktop"
+  "$DATA_HOME/flatpak/exports/share/applications/$STEAM_APP.desktop" >"$tmp"
+mv "$tmp" "$APPLICATIONS/$STEAM_APP.desktop"
 update-desktop-database "$APPLICATIONS" &>/dev/null || true

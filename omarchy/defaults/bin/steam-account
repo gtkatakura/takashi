@@ -4,14 +4,15 @@
 set -euo pipefail
 
 accounts_dir="$HOME/.steam-accounts"
-applications="$HOME/.local/share/applications"
+data_home="${XDG_DATA_HOME:-$HOME/.local/share}"
+applications="$data_home/applications"
 
 accounts() {
   local dir name
   echo labs
   for dir in "$accounts_dir"/*/; do
     name="$(basename "$dir")"
-    ! account_exists "$name" || echo "$name"
+    if account_exists "$name"; then echo "$name"; fi
   done
 }
 
@@ -34,21 +35,15 @@ valid_name() {
   [[ "$1" =~ ^[a-z0-9][a-z0-9_.-]*$ && ! "$1" =~ ^(labs|list|add|remove)$ ]]
 }
 
+# A link is not an account: remove would delete the link and leave the games where they are
 account_exists() {
-  valid_name "$1" && [ -d "$accounts_dir/$1" ]
+  valid_name "$1" && [ -d "$accounts_dir/$1" ] && [ ! -L "$accounts_dir/$1" ]
 }
 
-# Every Flatpak Steam has a D-Bus proxy from the moment it starts, carrying the account's HOME
-is_steam_proxy() {
-  [ "$(cat "/proc/$1/comm" 2>/dev/null)" = xdg-dbus-proxy ] && grep -zxFq "HOME=$2" "/proc/$1/environ" 2>/dev/null
-}
-
-steam_running() {
-  local pid
-  for pid in $(pgrep -u "$(id -u)" -x xdg-dbus-proxy); do
-    is_steam_proxy "$pid" "$1" && return
-  done
-  return 1
+# Every Flatpak Steam has D-Bus proxies from the moment it starts, carrying the account's HOME.
+# One can outlive its Steam, which only makes remove more careful
+steam_proxies() {
+  pgrep -u "$(id -u)" -x xdg-dbus-proxy --env "HOME=$1"
 }
 
 add_account() {
@@ -70,12 +65,12 @@ DESKTOP
 remove_account() {
   local home="$accounts_dir/$1" answer=""
   account_exists "$1" || fail "unknown account: $1"
-  ! steam_running "$home" || fail "close the $1 Steam first"
+  steam_proxies "$home" >/dev/null && fail "$1 is still running: close its Steam, or see flatpak ps"
   IFS= read -rp "Delete $home and its installed games? Type CONFIRM: " answer || true
   [ "$answer" = CONFIRM ] || fail "$1 not removed"
   # Again: it may have started while the prompt was open
-  ! steam_running "$home" || fail "close the $1 Steam first"
-  # The launcher entry goes first, so nothing can open the account while it is being deleted
+  steam_proxies "$home" >/dev/null && fail "$1 is still running: close its Steam, or see flatpak ps"
+  # The launcher entry goes first, so it cannot open the account while it is being deleted
   rm -f "$applications/steam-$1.desktop"
   rm -rf -- "$home"
 }
@@ -83,20 +78,22 @@ remove_account() {
 # A running Steam ignores a second launch while one of its games runs, so open its window from its
 # tray icon. The icons look the same: the one to click is owned by a Flatpak proxy with this HOME.
 show_window() {
-  local item service path pid id
+  local proxies item service path pid id
+  proxies=$(steam_proxies "$1") || return 1
   for item in $(busctl --user --json=short get-property org.kde.StatusNotifierWatcher /StatusNotifierWatcher \
     org.kde.StatusNotifierWatcher RegisteredStatusNotifierItems 2>/dev/null | jq -r '.data[]'); do
     service="${item%%/*}"
     path="/${item#*/}"
     [[ "$path" == */steam ]] || continue
     pid=$(busctl --user status "$service" 2>/dev/null | sed -n 's/^PID=//p')
-    is_steam_proxy "$pid" "$1" || continue
+    grep -qx "$pid" <<<"$proxies" || continue
 
-    # By label, never by position: Exit Steam sits in the same menu. Steam translates the labels, and
-    # the recent games above the first separator can have any name, so they are skipped
+    # Library, found from the end: the menu closes with Store, Library, Community | Friends, Settings |
+    # Big Picture, SteamVR, Exit Steam, in any language and below any recent games. Exit Steam is in
+    # the last group, which this cannot reach
     id=$(busctl --user --json=short call "$service" "$path/Menu" com.canonical.dbusmenu GetLayout iias 0 1 0 | jq -r '
-      .data[1][2] | map(.data) | (map(.[1].type.data == "separator") | index(true)) as $first
-      | .[$first:][] | select(.[1].label.data | IN("Library", "Biblioteca")) | .[0]')
+      .data[1][2] | map(.data) | [to_entries[] | select(.value[1].type.data == "separator") | .key] as $seps
+      | if ($seps | length) >= 2 then .[$seps[-2] - 2][0] else empty end')
     [ -n "$id" ] || return 1
     busctl --user call "$service" "$path/Menu" com.canonical.dbusmenu Event isvu "$id" clicked i 0 0
     return
@@ -135,4 +132,4 @@ fi
 [ $# -eq 0 ] && show_window "$home" && exit 0
 
 # XDG_DATA_HOME keeps the real per-user Flatpak installation visible under the new HOME
-exec env HOME="$home" XDG_DATA_HOME="$HOME/.local/share" flatpak run --user com.valvesoftware.Steam "$@"
+exec env HOME="$home" XDG_DATA_HOME="$data_home" flatpak run --user com.valvesoftware.Steam "$@"

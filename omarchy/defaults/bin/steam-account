@@ -131,5 +131,13 @@ fi
 
 [ $# -eq 0 ] && show_window "$home" && exit 0
 
+# Every sandbox starts Steam at the same PID, and Steam names its UI socket (/tmp/steam_chrome_shmem_*)
+# and shared memory after that PID, in the /tmp and /dev/shm all Flatpak Steams share: the last Steam
+# to start takes them, and the others never open a window. So each account burns 1000 PIDs per
+# position in the list first; labs, at 0, matches a plain flatpak run
+slot=$(accounts | grep -nxF "$name" | cut -d: -f1)
+skip=$(((slot - 1) * 1000))
+
 # XDG_DATA_HOME keeps the real per-user Flatpak installation visible under the new HOME
-exec env HOME="$home" XDG_DATA_HOME="$data_home" flatpak run --user com.valvesoftware.Steam "$@"
+exec env HOME="$home" XDG_DATA_HOME="$data_home" flatpak run --user --command=bash com.valvesoftware.Steam \
+  -c 'for ((i = 0; i < $0; i++)); do (:); done; exec steam "$@"' "$skip" "$@"

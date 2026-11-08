@@ -1,0 +1,19 @@
+omarchy/install/terminal/set-agent-skills.sh
+  s_4d04e1acbb74c0::t_43c53a52712d7e 11-15,21,28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9899523e20add917992eac5085bd279ef3f29b38",
+  "prompts": {},
+  "sessions": {
+    "s_4d04e1acbb74c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aa28cdc6-6573-405b-8d3c-ec7ace27df2e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

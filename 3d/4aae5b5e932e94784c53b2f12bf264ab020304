@@ -1,0 +1,90 @@
+shared/defaults/agents/skills/git-watch-commits/assets/checklist.md
+  s_4d04e1acbb74c0::t_77951051074153 1-15
+shared/defaults/agents/prompts/review-local.md
+  s_4d04e1acbb74c0::t_77951051074153 1-10
+shared/defaults/agents/skills/code-spike-library/references/example.md
+  s_4d04e1acbb74c0::t_77951051074153 1-7
+shared/defaults/agents/skills/git-pr/references/describe.md
+  s_4d04e1acbb74c0::t_77951051074153 1-26
+shared/defaults/agents/skills-lock.json
+  s_4d04e1acbb74c0::t_77951051074153 1-68
+shared/defaults/agents/skills/work-verify-claims/references/examples.md
+  s_4d04e1acbb74c0::t_77951051074153 1-8
+shared/defaults/agents/skills/review-changes/references/plan.md
+  s_4d04e1acbb74c0::t_77951051074153 1-6
+shared/defaults/agents/prompts/review-plan.md
+  s_4d04e1acbb74c0::t_77951051074153 1-10
+README.md
+  s_4d04e1acbb74c0::t_192ca0f74509c7 117,147
+shared/defaults/agents/skills/review-changes/references/axis-spec.md
+  s_4d04e1acbb74c0::t_77951051074153 1-21
+shared/defaults/agents/prompts/git-watch-commits.md
+  s_4d04e1acbb74c0::t_77951051074153 1-8
+shared/defaults/agents/prompts/git-pr.md
+  s_4d04e1acbb74c0::t_77951051074153 1-8
+shared/defaults/agents/opencode/agents/reviewer.md
+  s_4d04e1acbb74c0::t_77951051074153 1-7,9-25
+  s_4d04e1acbb74c0::t_538585720b3cf0 8
+shared/defaults/agents/opencode/opencode.jsonc
+  s_4d04e1acbb74c0::t_538585720b3cf0 1-12,16-28
+  s_4d04e1acbb74c0::t_290e899f6e3b38 13-15
+shared/defaults/agents/skills/code-spike-library/SKILL.md
+  s_4d04e1acbb74c0::t_77951051074153 1-32
+shared/defaults/agents/skills/review-changes/references/pr.md
+  s_4d04e1acbb74c0::t_77951051074153 1-7
+shared/defaults/agents/skills/review-changes/references/failure-modes.md
+  s_4d04e1acbb74c0::t_77951051074153 1-246
+shared/defaults/agents/opencode/agents/frontend.md
+  s_4d04e1acbb74c0::t_77951051074153 1-21
+shared/defaults/agents/prompts/code-spike-library.md
+  s_4d04e1acbb74c0::t_77951051074153 1-8
+shared/defaults/agents/skills/git-pr/SKILL.md
+  s_4d04e1acbb74c0::t_77951051074153 1-37
+shared/defaults/agents/prompts/review-pr.md
+  s_4d04e1acbb74c0::t_77951051074153 1-10
+shared/defaults/agents/skills/code-simplify/SKILL.md
+  s_4d04e1acbb74c0::t_77951051074153 1-35
+shared/defaults/agents/skills/review-changes/references/axis-standards.md
+  s_4d04e1acbb74c0::t_684700fcd4d998 9
+  s_4d04e1acbb74c0::t_77951051074153 1-8,10-39
+shared/defaults/agents/skills/git-pr/references/ship.md
+  s_4d04e1acbb74c0::t_77951051074153 1-11,13
+  s_4d04e1acbb74c0::t_684700fcd4d998 12
+shared/defaults/agents/skills/review-changes/references/local.md
+  s_4d04e1acbb74c0::t_77951051074153 1-6
+shared/defaults/agents/skills/review-changes/SKILL.md
+  s_4d04e1acbb74c0::t_77951051074153 1-28,30-75
+  s_4d04e1acbb74c0::t_684700fcd4d998 29
+shared/defaults/agents/prompts/code-simplify.md
+  s_4d04e1acbb74c0::t_77951051074153 1-8
+shared/defaults/agents/skills/git-watch-commits/SKILL.md
+  s_4d04e1acbb74c0::t_77951051074153 1-41
+omarchy/install/terminal/set-agent-skills.sh
+  s_4d04e1acbb74c0::t_290e899f6e3b38 1-45
+shared/defaults/agents/skills/review-changes/references/axis-failures.md
+  s_4d04e1acbb74c0::t_77951051074153 1-22
+shared/defaults/agents/skills/work-verify-claims/SKILL.md
+  s_4d04e1acbb74c0::t_77951051074153 1-27
+shared/defaults/agents/skills/git-watch-commits/scripts/watch-commits.ts
+  s_4d04e1acbb74c0::t_77951051074153 1-65
+shared/defaults/agents/AGENTS.md
+  s_4d04e1acbb74c0::t_538585720b3cf0 1-32
+MANUAL_SETUP.md
+  s_4d04e1acbb74c0::t_594365c6aac2aa 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3d4aae5b5e932e94784c53b2f12bf264ab020304",
+  "prompts": {},
+  "sessions": {
+    "s_4d04e1acbb74c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aa28cdc6-6573-405b-8d3c-ec7ace27df2e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

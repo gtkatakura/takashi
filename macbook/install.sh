@@ -68,8 +68,11 @@ brew install docker
 brew install docker-compose
 brew install orbstack
 brew install mise
+mise use -g bun@latest
 brew install gnupg
 brew install gh
+brew install rtk
+brew install ccusage
 brew install lazygit
 brew install lazydocker
 

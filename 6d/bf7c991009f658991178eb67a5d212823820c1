@@ -1,0 +1,22 @@
+macbook/token-cost/setup.sh
+  s_048728adcbc251::t_105de4b1e52f4c 22
+  s_048728adcbc251::t_baa756715a826d 5,18-21,23-50,66,107,111
+docs/token-cost/TEST-PLAN.md
+  s_048728adcbc251::t_5d3a4532618df1 17-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6dbf7c991009f658991178eb67a5d212823820c1",
+  "prompts": {},
+  "sessions": {
+    "s_048728adcbc251": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4317371d-e7b8-42eb-bb7b-b449d48d9e17",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

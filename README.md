@@ -114,6 +114,7 @@ bash <(curl -fsSL mac.gtkatakura.com)
 ### AI & ML
 
 - **LM Studio** - Desktop app for running local language models
+- **Agent skills** (Omarchy) - Skills for opencode and Claude Code (PR shipping, reviews, library spikes, refactoring, evidence before claiming done) plus pinned third-party skills; opencode also gets slash commands, `reviewer` and `frontend` agents (Figma, Chrome DevTools and Playwright MCP) and global instructions, all kept in `shared/defaults/agents`
 
 ### Gaming
 
@@ -143,6 +144,7 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 4. **Git Credentials** - Authenticate with GitHub (`gh auth login`), then install gh-dash on Omarchy
 5. **File Watcher Limits** - Increase system file watcher limits for development
 6. **Steam Accounts** (Omarchy) - Add each account with `steam-account add <name>` and log in once, with "remember me"
+7. **Figma MCP** (Omarchy) - Sign in once with `opencode mcp auth figma`
 
 ## Platform Differences
 

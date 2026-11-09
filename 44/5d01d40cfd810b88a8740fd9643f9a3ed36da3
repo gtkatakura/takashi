@@ -1,0 +1,21 @@
+docs/token-cost/README.md
+  s_048728adcbc251::t_b1c1073fc44207 1-50
+docs/token-cost/TEST-PLAN.md
+  s_048728adcbc251::t_2b146dffa8ad1a 1-119
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "445d01d40cfd810b88a8740fd9643f9a3ed36da3",
+  "prompts": {},
+  "sessions": {
+    "s_048728adcbc251": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4317371d-e7b8-42eb-bb7b-b449d48d9e17",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

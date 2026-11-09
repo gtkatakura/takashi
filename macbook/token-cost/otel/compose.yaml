@@ -1,0 +1,55 @@
+# Local telemetry stack for Claude Code cost tracking.
+# Ports are deliberately unusual (28xxx: below Linux/macOS ephemeral ranges, unassigned by IANA)
+# and bound to 127.0.0.1 only, so they do not collide with other tools or leave the machine.
+#   OTLP gRPC  127.0.0.1:28317
+#   OTLP HTTP  127.0.0.1:28318
+#   Grafana    http://127.0.0.1:28300  (anonymous admin, local only)
+name: takashi-token-cost
+
+services:
+  collector:
+    image: otel/opentelemetry-collector-contrib:0.116.1
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./collector.yaml:/etc/otelcol/config.yaml:ro
+    ports:
+      - "127.0.0.1:28317:4317"
+      - "127.0.0.1:28318:4318"
+    depends_on: [loki]
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=180d
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:3.3.2
+    command: ["-config.file=/etc/loki/local-config.yaml"]
+    volumes:
+      - loki-data:/loki
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.4.0
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+    volumes:
+      - ./grafana-provisioning:/etc/grafana/provisioning:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "127.0.0.1:28300:3000"
+    depends_on: [prometheus, loki]
+    restart: unless-stopped
+
+volumes:
+  prometheus-data:
+  loki-data:
+  grafana-data:

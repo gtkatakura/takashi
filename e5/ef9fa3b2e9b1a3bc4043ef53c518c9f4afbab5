@@ -1,0 +1,19 @@
+macbook/token-cost/otel/compose.yaml
+  s_048728adcbc251::t_b46f5372d8c5f8 44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e5ef9fa3b2e9b1a3bc4043ef53c518c9f4afbab5",
+  "prompts": {},
+  "sessions": {
+    "s_048728adcbc251": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4317371d-e7b8-42eb-bb7b-b449d48d9e17",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+macbook/token-cost/setup.sh
+  s_048728adcbc251::t_ec58435f412843 5-7,13-14,35,56-64,72,75
+macbook/token-cost/otel/grafana-provisioning/datasources/datasources.yaml
+  s_048728adcbc251::t_85c4e03567c680 1-11
+macbook/token-cost/otel/collector.yaml
+  s_048728adcbc251::t_85c4e03567c680 1-28
+macbook/token-cost/otel/compose.yaml
+  s_048728adcbc251::t_85c4e03567c680 1-55
+macbook/token-cost/otel/prometheus.yml
+  s_048728adcbc251::t_85c4e03567c680 1-6
+docs/token-cost/TEST-PLAN.md
+  s_048728adcbc251::t_ec58435f412843 17,22-23,25,48,52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5971ab2de44a7b1a0ce67aa6329df798cf9ed96d",
+  "prompts": {},
+  "sessions": {
+    "s_048728adcbc251": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4317371d-e7b8-42eb-bb7b-b449d48d9e17",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

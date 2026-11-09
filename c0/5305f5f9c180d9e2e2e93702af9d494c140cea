@@ -1,0 +1,56 @@
+macbook/token-cost/sim.ts
+  s_048728adcbc251::t_f0176ef83a367a 1-89
+macbook/token-cost/settings.ts
+  s_048728adcbc251::t_2e546d3f3d4e56 1-28
+macbook/token-cost/otel/prometheus.yml
+  s_048728adcbc251::t_85c4e03567c680 1-6
+docs/token-cost/TEST-PLAN.md
+  s_048728adcbc251::t_5d3a4532618df1 17-28
+  s_048728adcbc251::t_ec58435f412843 29,34-35,37,60,64
+  s_048728adcbc251::t_2b146dffa8ad1a 1-4,41-59,61-63,65-155
+  s_048728adcbc251::t_db9ac64e5fa508 156-162
+  s_048728adcbc251::t_c277e2115e7641 5-16,30-33,36,38-40
+macbook/token-cost/report.sh
+  s_048728adcbc251::t_e042e328f16e38 22
+  s_048728adcbc251::t_85810b11cb0f73 1-21
+macbook/token-cost/otel/collector.yaml
+  s_048728adcbc251::t_85c4e03567c680 1-28
+macbook/token-cost/setup.sh
+  s_048728adcbc251::t_baa756715a826d 5,18-21,23-50,66
+  s_048728adcbc251::t_105de4b1e52f4c 22
+  s_048728adcbc251::t_3586416ec5968e 1-4,9-13,16-17,51-65,67-69,71-87
+  s_048728adcbc251::t_ec58435f412843 6-8,14-15,70
+macbook/token-cost/usage.ts
+  s_048728adcbc251::t_ae7f411231a349 1-52
+macbook/token-cost/otel/compose.yaml
+  s_048728adcbc251::t_85c4e03567c680 1-55
+docs/token-cost/README.md
+  s_048728adcbc251::t_75f3b384ea3517 51-56
+  s_048728adcbc251::t_b1c1073fc44207 1-2,4-50
+  s_048728adcbc251::t_ba043e4e3c11dc 3
+macbook/token-cost/otel/grafana-provisioning/datasources/datasources.yaml
+  s_048728adcbc251::t_85c4e03567c680 1-11
+macbook/token-cost/ctx.ts
+  s_048728adcbc251::t_9c645937365c44 1-18
+macbook/token-cost/lib.ts
+  s_048728adcbc251::t_ea8382dc86a647 1-74
+macbook/install.sh
+  s_048728adcbc251::t_3586416ec5968e 74-75
+  s_048728adcbc251::t_c7db152d55bbf4 71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c05305f5f9c180d9e2e2e93702af9d494c140cea",
+  "prompts": {},
+  "sessions": {
+    "s_048728adcbc251": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4317371d-e7b8-42eb-bb7b-b449d48d9e17",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

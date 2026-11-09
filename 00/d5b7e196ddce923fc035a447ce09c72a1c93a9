@@ -1,0 +1,33 @@
+macbook/token-cost/ctx.py
+  s_048728adcbc251::t_85810b11cb0f73 1-33
+macbook/token-cost/sim.py
+  s_048728adcbc251::t_85810b11cb0f73 1-113
+macbook/token-cost/report.sh
+  s_048728adcbc251::t_85810b11cb0f73 1-21
+macbook/token-cost/usage.py
+  s_048728adcbc251::t_85810b11cb0f73 1-78
+macbook/token-cost/setup.sh
+  s_048728adcbc251::t_3586416ec5968e 1-62
+macbook/install.sh
+  s_048728adcbc251::t_3586416ec5968e 73-74
+docs/token-cost/README.md
+  s_048728adcbc251::t_ba043e4e3c11dc 3
+docs/token-cost/TEST-PLAN.md
+  s_048728adcbc251::t_c277e2115e7641 5-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "00d5b7e196ddce923fc035a447ce09c72a1c93a9",
+  "prompts": {},
+  "sessions": {
+    "s_048728adcbc251": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4317371d-e7b8-42eb-bb7b-b449d48d9e17",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

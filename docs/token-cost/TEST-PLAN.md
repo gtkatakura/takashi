@@ -6,6 +6,8 @@ The final decision on each tool comes from cost per completed task, measured fro
 
 Scripts live in `macbook/token-cost/`. `brew install rtk ccusage` and `mise use -g bun@latest` are also in `macbook/install.sh` (the scripts run on Bun, managed by mise).
 
+The same scripts run on Omarchy. There, `omarchy/install/terminal/app-token-cost.sh` installs Bun, RTK and ccusage through mise, and `apps-docker.sh` enables Docker at boot so the telemetry stack comes back after a reboot.
+
 ```bash
 macbook/token-cost/setup.sh check      # what is installed and configured, changes nothing
 macbook/token-cost/report.sh           # baseline from local transcripts (last 40 days)
@@ -23,6 +25,7 @@ macbook/token-cost/setup.sh telemetry off
 macbook/token-cost/setup.sh stack down
 macbook/token-cost/setup.sh agents            # RTK and Caveman for codex, opencode, omp
 macbook/token-cost/setup.sh ponytail          # only after the baseline
+macbook/token-cost/setup.sh context-mode      # trial, see step 8; `context-mode off` removes it
 ```
 
 ### Agents
@@ -58,6 +61,8 @@ OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:28317
 OTEL_RESOURCE_ATTRIBUTES=arm=rtk_on,caveman=on
 ```
 
+The attributes follow the current setup: `arm` is `rtk_on` or `rtk_off`, with `_context_mode` appended when that plugin is on, and `caveman` is `on` or `off`. `setup.sh context-mode` refreshes them after installing or removing the plugin.
+
 Without the stack: `ccusage claude weekly --json --breakdown`.
 
 ## Order
@@ -69,6 +74,7 @@ Without the stack: `ccusage claude weekly --json --breakdown`.
 5. Test Ponytail as a plugin for two weeks.
 6. A/B of RTK and Caveman.
 7. Lean tool results experiment (`fields` in MCP calls, large reads in subagents).
+8. A/B of other tools (done 13 Nov 2026, see README.md).
 
 ## 1. Telemetry and baseline
 
@@ -162,3 +168,19 @@ Compare OmniRoute's fallback and quota routing with what `aihub-gateway` does to
 - Output per turn and turns per session.
 - `rtk gain -F` (commands RTK could not filter) and `rtk gain --recalls`.
 - Read 2 to 3 transcripts looking for wrong conclusions.
+
+## 9. Tool A/B runner
+
+`macbook/token-cost/ab/` compares tools against plain Claude Code with `claude -p`, reading billed cost from its JSON output. It changes no user config: each variant gets its tool through per-run flags (`--plugin-dir`, `--mcp-config`, `--settings` with `--setting-sources project,local`), the environment, or files inside its own temporary directory. Telemetry is off in A/B runs, so they stay out of the Grafana baseline.
+
+| Command | Compares | Tasks |
+| --- | --- | --- |
+| `AB_ARM=context-mode bun run.ts 5` | with and without the plugin | `fixtures.ts`: large log, JSON, test and build output |
+| `AB_ARM=headroom bun run.ts 5` | through the headroom proxy or not | same |
+| `AB_ARM=graphify AB_SUITE=code bun run.ts 5` | with and without the graph | `code.ts`: lookups in a pinned headroom checkout |
+| `AB_ARM=graphify AB_SUITE=broad bun run.ts 3` | same | `broad.ts`: architecture questions graded on key facts |
+| `AB_ARM=rtk-caveman bun run.ts 4` | base, rtk, caveman, both | all of the above |
+| `AB_EXP=long bun session.ts 5` | base, rtk, context-mode, headroom | `long.ts`: one 9-turn session with pytest, git, MCP JSON (`mcp.ts`) |
+| `AB_EXP=caveman bun session.ts 3` | none, "Answer concisely.", caveman | 8-turn explanation session on Opus |
+
+`AB_MODEL` picks the model. Prerequisites live in `~/.cache/takashi-ab`: clones of `mksglu/context-mode` and `headroomlabs-ai/headroom` (checkout `0368a87`), `uv tool install graphifyy` and `"headroom-ai[all]"` into `bin/`, a graph from `graphify update .` in the headroom clone, and a `pyenv/` virtualenv with pytest.

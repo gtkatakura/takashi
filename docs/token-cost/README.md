@@ -21,16 +21,25 @@ Study from 9 Nov 2026 on where Claude Code cost goes and which compression tools
 | --- | --- | --- |
 | Smaller context (`/clear`, `/rewind`) | Adopt | Attacks the 73% |
 | Cache hygiene | Adopt | Do not switch model, MCP or plugin mid-session |
-| Effort and model per task | Test | Low effort on mechanical tasks, simple subagents on Haiku |
+| Effort and model per task | Adopt | Subagent model by task in `~/.claude/CLAUDE.md`: Haiku for mechanical work (translation, reformatting, summaries), Sonnet for exploration and routine edits |
+| "Answer concisely." in `CLAUDE.md` | Adopt | A/B on Opus 5.5, 8-turn explanation session: -24% cost against no instruction (ranges do not overlap, n=3). Beat Caveman |
 | Ponytail (plugin) | Test | JetBrains: -10.3% cost (p=0.004), quality tied |
-| Caveman | Keep, expect little | -8.5% output, ceiling of 0.6% here |
-| RTK | Suspect | JetBrains: +7.6% cost. Quesma: +1%. gliai: +5.8%. Decide by A/B only |
-| context-mode | Test | Author numbers only, on outputs of 10 KB or more. Cache-safe, but text tool results are a small share here. Trial in TEST-PLAN.md step 8 |
+| Caveman | Drop | A/B: +15% cost on short Haiku tasks (fixed instructions outweigh shorter replies). Opus explanation session, its best case: -7% cost, no output cut, against -24% for "Answer concisely." |
+| RTK | Neutral (kept) | A/B: +0% on short Haiku tasks, +2% on a 9-turn Sonnet session with 245-824 KB command outputs. Claude Code already persists large outputs to files and the model filters with grep, so little reaches the hook. External: JetBrains +7.6%, Quesma +1% per task, gliai +5.8% |
+| context-mode | Skip | A/B: +1.4% (Haiku), +7.6% (Sonnet) on short tasks, +6% on the long Sonnet session, its best case. Its own Opus 5.5 A/B: +2.2% |
 | Serena, code-graph | Skip | Only worth it on large repositories |
 | OmniRoute | Skip | "89%" is arithmetic over third-party claims. An independent review measured about 5% |
-| headroom | Skip | Proxy in front of the API with the user's token. Savings measured by the authors on 4 scenarios; compressing blocks between turns can turn cache reads into cache writes |
-| graphify | Skip | Code knowledge graph, not a compressor. Its benchmarks measure memory QA, not token cost; the "80%" refers to its paid cloud product |
+| headroom | Skip | A/B: -2.9% on short Haiku tasks and -1% on the long Sonnet session with large MCP JSON, both within noise; the proxy compressed 2.5% of input. Its "21-57%" is an offline token count with an OpenAI tokenizer. Routes all traffic and the OAuth token through a local proxy |
+| graphify | Skip | A/B: +11.5% on lookup questions (Haiku); on broad architecture questions (Sonnet, its best case) +1% cost and 13/15 correct against 12/15. Its "71x" compares a query with reading the whole repo |
 | claude-mem, LLMLingua, proxies | Skip | Rewriting context breaks the cache |
+
+## A/B results (13 Nov 2026)
+
+Each tool was tested against plain Claude Code in the scenario its own docs name as its best case, plus short tasks. Cost is the billed `total_cost_usd` per completed task or session, read from `claude -p`. Runner: `macbook/token-cost/ab/`; raw rows: `ab-results/`. Steps to rerun are in TEST-PLAN.md step 9.
+
+No compressor lowered cost beyond run-to-run noise. They act on tool output or reply length, while 73% of cost here is cache reads of a large context, and each adds fixed instructions or tool schemas to every session.
+
+Limits: 3 to 5 runs per arm, synthetic tasks, sessions of at most 9 turns, Haiku and Sonnet for most tools.
 
 ## What to learn from OmniRoute without installing it
 

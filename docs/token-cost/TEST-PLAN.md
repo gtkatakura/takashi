@@ -74,7 +74,7 @@ Without the stack: `ccusage claude weekly --json --breakdown`.
 5. Test Ponytail as a plugin for two weeks.
 6. A/B of RTK and Caveman.
 7. Lean tool results experiment (`fields` in MCP calls, large reads in subagents).
-8. Trial of context-mode.
+8. A/B of other tools (done 13 Nov 2026, see README.md).
 
 ## 1. Telemetry and baseline
 
@@ -169,10 +169,18 @@ Compare OmniRoute's fallback and quota routing with what `aihub-gateway` does to
 - `rtk gain -F` (commands RTK could not filter) and `rtk gain --recalls`.
 - Read 2 to 3 transcripts looking for wrong conclusions.
 
-## 8. context-mode
+## 9. Tool A/B runner
 
-`setup.sh context-mode` installs the plugin from `mksglu/context-mode`, and `setup.sh context-mode off` removes it. Telemetry tags those sessions `arm=rtk_on_context_mode`, so the dashboard's "cost by arm" panel compares them with `rtk_on`.
+`macbook/token-cost/ab/` compares tools against plain Claude Code with `claude -p`, reading billed cost from its JSON output. It changes no user config: each variant gets its tool through per-run flags (`--plugin-dir`, `--mcp-config`, `--settings` with `--setting-sources project,local`), the environment, or files inside its own temporary directory. Telemetry is off in A/B runs, so they stay out of the Grafana baseline.
 
-Expect little. The plugin moves large tool outputs into a local sandbox with SQLite search and does not rewrite history, so it keeps the cache. Its "99.4% smaller" figure covers only bench rows with 10 KB or more of raw output. Here text tool results are a small share of bytes (59 MB of text against 1,421 MB of images in 40 days), and images are untouched. It also adds MCP tools and skills to every context, costs extra calls to fetch indexed output, and intercepts Bash like the RTK hook.
+| Command | Compares | Tasks |
+| --- | --- | --- |
+| `AB_ARM=context-mode bun run.ts 5` | with and without the plugin | `fixtures.ts`: large log, JSON, test and build output |
+| `AB_ARM=headroom bun run.ts 5` | through the headroom proxy or not | same |
+| `AB_ARM=graphify AB_SUITE=code bun run.ts 5` | with and without the graph | `code.ts`: lookups in a pinned headroom checkout |
+| `AB_ARM=graphify AB_SUITE=broad bun run.ts 3` | same | `broad.ts`: architecture questions graded on key facts |
+| `AB_ARM=rtk-caveman bun run.ts 4` | base, rtk, caveman, both | all of the above |
+| `AB_EXP=long bun session.ts 5` | base, rtk, context-mode, headroom | `long.ts`: one 9-turn session with pytest, git, MCP JSON (`mcp.ts`) |
+| `AB_EXP=caveman bun session.ts 3` | none, "Answer concisely.", caveman | 8-turn explanation session on Opus |
 
-One week on, one week off, then compare cost per session and median context per call. Keep it only if cost per session drops by more than the week-to-week variation of the baseline.
+`AB_MODEL` picks the model. Prerequisites live in `~/.cache/takashi-ab`: clones of `mksglu/context-mode` and `headroomlabs-ai/headroom` (checkout `0368a87`), `uv tool install graphifyy` and `"headroom-ai[all]"` into `bin/`, a graph from `graphify update .` in the headroom clone, and a `pyenv/` virtualenv with pytest.

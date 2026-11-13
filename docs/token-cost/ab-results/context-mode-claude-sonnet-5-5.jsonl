@@ -1,0 +1,50 @@
+{"task":"log-fatal","arm":"on","rep":0,"ok":true,"cost":0.1094414,"turns":2,"ms":3417,"input":4,"cache_write":26314,"cache_read":24374,"output":174,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-fatal","arm":"off","rep":0,"ok":true,"cost":0.06189399999999999,"turns":2,"ms":3476,"input":4,"cache_write":14185,"cache_read":34560,"output":169,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"on","rep":0,"ok":true,"cost":0.12146449999999999,"turns":4,"ms":7224,"input":8,"cache_write":27132,"cache_read":77905,"output":513,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"off","rep":0,"ok":true,"cost":0.06717680000000001,"turns":3,"ms":4476,"input":6,"cache_write":14585,"cache_read":60148,"output":281,"answer":"ANSWER: 437"}
+{"task":"log-errors","arm":"off","rep":0,"ok":true,"cost":0.0690772,"turns":3,"ms":5231,"input":6,"cache_write":14718,"cache_read":60232,"output":417,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"on","rep":0,"ok":true,"cost":0.06915959999999999,"turns":3,"ms":4306,"input":6,"cache_write":15057,"cache_read":62596,"output":266,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"on","rep":0,"ok":true,"cost":0.07506070000000001,"turns":3,"ms":6028,"input":6,"cache_write":16371,"cache_read":63747,"output":319,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"tests","arm":"off","rep":0,"ok":true,"cost":0.0729315,"turns":3,"ms":6024,"input":6,"cache_write":15900,"cache_read":61295,"output":319,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"build","arm":"off","rep":0,"ok":true,"cost":0.0636777,"turns":2,"ms":3879,"input":4,"cache_write":14526,"cache_read":34557,"output":211,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"build","arm":"on","rep":0,"ok":true,"cost":0.0641839,"turns":2,"ms":3721,"input":4,"cache_write":14663,"cache_read":36039,"output":192,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"on","rep":1,"ok":true,"cost":0.0638898,"turns":2,"ms":5328,"input":4,"cache_write":14657,"cache_read":36038,"output":165,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-fatal","arm":"off","rep":1,"ok":true,"cost":0.0618402,"turns":2,"ms":4812,"input":4,"cache_write":14184,"cache_read":34562,"output":164,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"off","rep":1,"ok":true,"cost":0.06871669999999999,"turns":3,"ms":5889,"input":6,"cache_write":14689,"cache_read":60187,"output":393,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"on","rep":1,"ok":true,"cost":0.0693703,"turns":3,"ms":6072,"input":6,"cache_write":15057,"cache_read":62603,"output":287,"answer":"ANSWER: 437"}
+{"task":"log-errors","arm":"on","rep":1,"ok":true,"cost":0.07331410000000001,"turns":4,"ms":7328,"input":8,"cache_write":15118,"cache_read":89061,"output":392,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"off","rep":1,"ok":true,"cost":0.0671968,"turns":3,"ms":5592,"input":6,"cache_write":14585,"cache_read":60148,"output":283,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"on","rep":1,"ok":true,"cost":0.07507509999999999,"turns":3,"ms":5396,"input":6,"cache_write":16372,"cache_read":63751,"output":320,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"build","arm":"on","rep":1,"ok":true,"cost":0.06558349999999999,"turns":2,"ms":3725,"input":4,"cache_write":14998,"cache_read":36035,"output":198,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"tests","arm":"off","rep":1,"ok":true,"cost":0.0920048,"turns":3,"ms":7319,"input":6,"cache_write":20557,"cache_read":65948,"output":317,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"log-fatal","arm":"off","rep":2,"ok":true,"cost":0.061903999999999994,"turns":2,"ms":3011,"input":4,"cache_write":14185,"cache_read":34560,"output":170,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"build","arm":"off","rep":1,"ok":true,"cost":0.0636081,"turns":2,"ms":3595,"input":4,"cache_write":14526,"cache_read":34561,"output":204,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"on","rep":2,"ok":true,"cost":0.0637578,"turns":2,"ms":3552,"input":4,"cache_write":14659,"cache_read":36038,"output":151,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"on","rep":2,"ok":true,"cost":0.0702208,"turns":3,"ms":6530,"input":6,"cache_write":15185,"cache_read":62688,"output":320,"answer":"ANSWER: billing, 322"}
+{"task":"log-errors","arm":"off","rep":2,"ok":true,"cost":0.0676446,"turns":3,"ms":6324,"input":6,"cache_write":14663,"cache_read":60206,"output":296,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"off","rep":2,"ok":true,"cost":0.0671228,"turns":3,"ms":6642,"input":6,"cache_write":14584,"cache_read":60148,"output":276,"answer":"ANSWER: 437"}
+{"task":"json-admins","arm":"on","rep":2,"ok":true,"cost":0.0692844,"turns":3,"ms":5452,"input":6,"cache_write":15058,"cache_read":62604,"output":278,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"on","rep":2,"ok":true,"cost":0.0751571,"turns":3,"ms":5289,"input":6,"cache_write":16365,"cache_read":63751,"output":331,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"tests","arm":"off","rep":2,"ok":true,"cost":0.0732371,"turns":3,"ms":5618,"input":6,"cache_write":15894,"cache_read":61291,"output":352,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"build","arm":"off","rep":2,"ok":true,"cost":0.0635981,"turns":2,"ms":3719,"input":4,"cache_write":14526,"cache_read":34561,"output":203,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"build","arm":"on","rep":2,"ok":true,"cost":0.06422209999999999,"turns":2,"ms":4651,"input":4,"cache_write":14665,"cache_read":36041,"output":195,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"on","rep":3,"ok":true,"cost":0.063912,"turns":2,"ms":3924,"input":4,"cache_write":14660,"cache_read":36040,"output":166,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-fatal","arm":"off","rep":3,"ok":true,"cost":0.0618502,"turns":2,"ms":4248,"input":4,"cache_write":14184,"cache_read":34562,"output":165,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"off","rep":3,"ok":true,"cost":0.0672326,"turns":3,"ms":4221,"input":6,"cache_write":14621,"cache_read":60166,"output":272,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"on","rep":3,"ok":true,"cost":0.0693144,"turns":3,"ms":4547,"input":6,"cache_write":15058,"cache_read":62604,"output":281,"answer":"ANSWER: 437"}
+{"task":"log-errors","arm":"on","rep":3,"ok":true,"cost":0.07078060000000001,"turns":3,"ms":7081,"input":6,"cache_write":15208,"cache_read":62666,"output":367,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"off","rep":3,"ok":true,"cost":0.0672264,"turns":3,"ms":4599,"input":6,"cache_write":14580,"cache_read":60144,"output":288,"answer":"ANSWER: 437"}
+{"task":"build","arm":"on","rep":3,"ok":true,"cost":0.0641439,"turns":2,"ms":4042,"input":4,"cache_write":14663,"cache_read":36039,"output":188,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"tests","arm":"off","rep":3,"ok":true,"cost":0.07291349999999999,"turns":3,"ms":5419,"input":6,"cache_write":15873,"cache_read":61295,"output":328,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"tests","arm":"on","rep":3,"ok":true,"cost":0.07506710000000001,"turns":3,"ms":6712,"input":6,"cache_write":16375,"cache_read":63751,"output":318,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"log-fatal","arm":"off","rep":4,"ok":true,"cost":0.0619202,"turns":2,"ms":3110,"input":4,"cache_write":14184,"cache_read":34562,"output":172,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"build","arm":"off","rep":3,"ok":true,"cost":0.0621065,"turns":2,"ms":3558,"input":4,"cache_write":14188,"cache_read":34565,"output":189,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"on","rep":4,"ok":true,"cost":0.0639498,"turns":2,"ms":4623,"input":4,"cache_write":14657,"cache_read":36038,"output":171,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"on","rep":4,"ok":true,"cost":0.06955620000000001,"turns":3,"ms":5576,"input":6,"cache_write":15159,"cache_read":62682,"output":264,"answer":"ANSWER: billing, 322"}
+{"task":"log-errors","arm":"off","rep":4,"ok":true,"cost":0.0684114,"turns":3,"ms":6916,"input":6,"cache_write":14697,"cache_read":60214,"output":359,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"off","rep":4,"ok":true,"cost":0.06703680000000001,"turns":3,"ms":4803,"input":6,"cache_write":14585,"cache_read":60148,"output":267,"answer":"ANSWER: 437"}
+{"task":"json-admins","arm":"on","rep":4,"ok":true,"cost":0.0691403,"turns":3,"ms":6229,"input":6,"cache_write":15057,"cache_read":62603,"output":264,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"off","rep":4,"ok":true,"cost":0.0727839,"turns":3,"ms":5052,"input":6,"cache_write":15888,"cache_read":61299,"output":309,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"tests","arm":"on","rep":4,"ok":true,"cost":0.0750731,"turns":3,"ms":6038,"input":6,"cache_write":16374,"cache_read":63751,"output":319,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"build","arm":"on","rep":4,"ok":true,"cost":0.0641321,"turns":2,"ms":3990,"input":4,"cache_write":14665,"cache_read":36041,"output":186,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"build","arm":"off","rep":4,"ok":true,"cost":0.0635763,"turns":2,"ms":4879,"input":4,"cache_write":14528,"cache_read":34563,"output":200,"answer":"ANSWER: src/billing/25e72c.ts:87"}

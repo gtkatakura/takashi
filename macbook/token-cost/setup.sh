@@ -8,12 +8,16 @@
 #                                      default endpoint is the local stack, http://127.0.0.1:28317
 #   setup.sh telemetry off             remove it
 #   setup.sh ponytail                  install the Ponytail plugin (trial, see docs/token-cost/TEST-PLAN.md)
+#   setup.sh context-mode [off]        install or remove the context-mode plugin (trial, A/B arm in telemetry)
 set -euo pipefail
 
 settings="$HOME/.claude/settings.json"
 dir="$(cd "$(dirname "$0")" && pwd)"
 default_endpoint="http://127.0.0.1:28317"
 cmd="${1:-check}"
+
+# The mise bun shim fails when no global version is set; fall back to an explicit one.
+run_bun() { if bun --version >/dev/null 2>&1; then bun "$@"; else mise x bun@latest -- bun "$@"; fi; }
 
 caveman_installer() { ls -d "$HOME"/.claude/plugins/cache/caveman/caveman/*/installer/install.js 2>/dev/null | tail -1; }
 
@@ -52,14 +56,14 @@ check() {
   for bin in rtk ccusage claude; do
     if command -v "$bin" >/dev/null; then echo "ok       $bin $($bin --version 2>&1 | head -1)"; else echo "missing  $bin"; fi
   done
-  bun "$dir/settings.ts" check "$settings"
+  run_bun "$dir/settings.ts" check "$settings"
   agent_state
 }
 
 telemetry() {
   local endpoint="${1:-$default_endpoint}"
   cp "$settings" "$settings.bak-token-cost"
-  bun "$dir/settings.ts" telemetry "$settings" "$endpoint"
+  run_bun "$dir/settings.ts" telemetry "$settings" "$endpoint"
   echo "done. backup: $settings.bak-token-cost. Restart Claude Code sessions to apply."
 }
 
@@ -77,11 +81,26 @@ ponytail() {
   claude plugin install ponytail@ponytail
 }
 
+# Telemetry tags each session with an arm derived from the current setup (see settings.ts),
+# so Grafana's "cost by arm" panel compares sessions with and without the plugin.
+context_mode() {
+  if [ "${1:-}" = "off" ]; then
+    claude plugin uninstall context-mode@context-mode
+    claude plugin marketplace remove context-mode
+  else
+    claude plugin marketplace add mksglu/context-mode
+    claude plugin install context-mode@context-mode
+  fi
+  run_bun "$dir/settings.ts" arm "$settings"
+  echo "Restart Claude Code sessions to apply."
+}
+
 case "$cmd" in
   check) check ;;
   agents) agents ;;
   stack) stack "${2:-}" ;;
   telemetry) telemetry "${2:-}" ;;
   ponytail) ponytail ;;
-  *) sed -n 2,13p "$0"; exit 1 ;;
+  context-mode) context_mode "${2:-}" ;;
+  *) sed -n 2,11p "$0"; exit 1 ;;
 esac

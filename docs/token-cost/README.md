@@ -25,9 +25,11 @@ Study from 9 Nov 2026 on where Claude Code cost goes and which compression tools
 | Ponytail (plugin) | Test | JetBrains: -10.3% cost (p=0.004), quality tied |
 | Caveman | Keep, expect little | -8.5% output, ceiling of 0.6% here |
 | RTK | Suspect | JetBrains: +7.6% cost. Quesma: +1%. gliai: +5.8%. Decide by A/B only |
-| context-mode | Maybe | Author numbers only |
+| context-mode | Test | Author numbers only, on outputs of 10 KB or more. Cache-safe, but text tool results are a small share here. Trial in TEST-PLAN.md step 8 |
 | Serena, code-graph | Skip | Only worth it on large repositories |
 | OmniRoute | Skip | "89%" is arithmetic over third-party claims. An independent review measured about 5% |
+| headroom | Skip | Proxy in front of the API with the user's token. Savings measured by the authors on 4 scenarios; compressing blocks between turns can turn cache reads into cache writes |
+| graphify | Skip | Code knowledge graph, not a compressor. Its benchmarks measure memory QA, not token cost; the "80%" refers to its paid cloud product |
 | claude-mem, LLMLingua, proxies | Skip | Rewriting context breaks the cache |
 
 ## What to learn from OmniRoute without installing it

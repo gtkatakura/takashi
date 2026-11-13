@@ -6,6 +6,8 @@ The final decision on each tool comes from cost per completed task, measured fro
 
 Scripts live in `macbook/token-cost/`. `brew install rtk ccusage` and `mise use -g bun@latest` are also in `macbook/install.sh` (the scripts run on Bun, managed by mise).
 
+The same scripts run on Omarchy. There, `omarchy/install/terminal/app-token-cost.sh` installs Bun, RTK and ccusage through mise, and `apps-docker.sh` enables Docker at boot so the telemetry stack comes back after a reboot.
+
 ```bash
 macbook/token-cost/setup.sh check      # what is installed and configured, changes nothing
 macbook/token-cost/report.sh           # baseline from local transcripts (last 40 days)
@@ -23,6 +25,7 @@ macbook/token-cost/setup.sh telemetry off
 macbook/token-cost/setup.sh stack down
 macbook/token-cost/setup.sh agents            # RTK and Caveman for codex, opencode, omp
 macbook/token-cost/setup.sh ponytail          # only after the baseline
+macbook/token-cost/setup.sh context-mode      # trial, see step 8; `context-mode off` removes it
 ```
 
 ### Agents
@@ -58,6 +61,8 @@ OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:28317
 OTEL_RESOURCE_ATTRIBUTES=arm=rtk_on,caveman=on
 ```
 
+The attributes follow the current setup: `arm` is `rtk_on` or `rtk_off`, with `_context_mode` appended when that plugin is on, and `caveman` is `on` or `off`. `setup.sh context-mode` refreshes them after installing or removing the plugin.
+
 Without the stack: `ccusage claude weekly --json --breakdown`.
 
 ## Order
@@ -69,6 +74,7 @@ Without the stack: `ccusage claude weekly --json --breakdown`.
 5. Test Ponytail as a plugin for two weeks.
 6. A/B of RTK and Caveman.
 7. Lean tool results experiment (`fields` in MCP calls, large reads in subagents).
+8. Trial of context-mode.
 
 ## 1. Telemetry and baseline
 
@@ -162,3 +168,11 @@ Compare OmniRoute's fallback and quota routing with what `aihub-gateway` does to
 - Output per turn and turns per session.
 - `rtk gain -F` (commands RTK could not filter) and `rtk gain --recalls`.
 - Read 2 to 3 transcripts looking for wrong conclusions.
+
+## 8. context-mode
+
+`setup.sh context-mode` installs the plugin from `mksglu/context-mode`, and `setup.sh context-mode off` removes it. Telemetry tags those sessions `arm=rtk_on_context_mode`, so the dashboard's "cost by arm" panel compares them with `rtk_on`.
+
+Expect little. The plugin moves large tool outputs into a local sandbox with SQLite search and does not rewrite history, so it keeps the cache. Its "99.4% smaller" figure covers only bench rows with 10 KB or more of raw output. Here text tool results are a small share of bytes (59 MB of text against 1,421 MB of images in 40 days), and images are untouched. It also adds MCP tools and skills to every context, costs extra calls to fetch indexed output, and intercepts Bash like the RTK hook.
+
+One week on, one week off, then compare cost per session and median context per call. Keep it only if cost per session drops by more than the week-to-week variation of the baseline.

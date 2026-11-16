@@ -1,0 +1,50 @@
+{"task":"log-fatal","arm":"off","rep":0,"ok":true,"cost":0.00356956,"turns":2,"ms":4601,"input":4,"cache_write":15104,"cache_read":35386,"output":389,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-fatal","arm":"on","rep":0,"ok":true,"cost":0.00413096,"turns":3,"ms":6647,"input":6,"cache_write":15954,"cache_read":64106,"output":597,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"on","rep":0,"ok":true,"cost":0.004738590000000001,"turns":4,"ms":8614,"input":8,"cache_write":17045,"cache_read":92329,"output":811,"answer":"ANSWER: billing (322 ERROR lines)"}
+{"task":"log-errors","arm":"off","rep":0,"ok":true,"cost":0.00408072,"turns":3,"ms":6481,"input":6,"cache_write":15784,"cache_read":61932,"output":608,"answer":"ANSWER: billing (322 ERROR lines)"}
+{"task":"json-admins","arm":"off","rep":0,"ok":true,"cost":0.00528908,"turns":3,"ms":7161,"input":6,"cache_write":21451,"cache_read":62978,"output":737,"answer":"ANSWER: 437"}
+{"task":"json-admins","arm":"on","rep":0,"ok":true,"cost":0.00554445,"turns":5,"ms":12525,"input":10,"cache_write":17665,"cache_read":120445,"output":1612,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"off","rep":0,"ok":true,"cost":0.005114520000000001,"turns":4,"ms":9482,"input":8,"cache_write":18827,"cache_read":87882,"output":939,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"tests","arm":"on","rep":0,"ok":true,"cost":0.005434530000000001,"turns":5,"ms":12324,"input":10,"cache_write":17737,"cache_read":119963,"output":1373,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"log-fatal","arm":"on","rep":1,"ok":true,"cost":0.00363872,"turns":2,"ms":4178,"input":4,"cache_write":15581,"cache_read":36862,"output":307,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"build","arm":"off","rep":0,"ok":true,"cost":0.004684380000000001,"turns":3,"ms":6962,"input":6,"cache_write":18722,"cache_read":64888,"output":581,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"build","arm":"on","rep":0,"ok":true,"cost":0.004250790000000001,"turns":3,"ms":7434,"input":6,"cache_write":16200,"cache_read":64069,"output":739,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"off","rep":1,"ok":true,"cost":0.0035712400000000003,"turns":2,"ms":5087,"input":4,"cache_write":15115,"cache_read":35384,"output":388,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"off","rep":1,"ok":true,"cost":0.004074820000000001,"turns":3,"ms":6893,"input":6,"cache_write":15787,"cache_read":61932,"output":595,"answer":"ANSWER: billing — 322"}
+{"task":"log-errors","arm":"on","rep":1,"ok":true,"cost":0.00438173,"turns":3,"ms":8262,"input":6,"cache_write":16754,"cache_read":64733,"output":766,"answer":"ANSWER: billing, 322 ERROR lines"}
+{"task":"json-admins","arm":"on","rep":1,"ok":true,"cost":0.00520312,"turns":4,"ms":10946,"input":8,"cache_write":17566,"cache_read":92812,"output":1522,"answer":"ANSWER: 437"}
+{"task":"json-admins","arm":"off","rep":1,"ok":true,"cost":0.00465061,"turns":4,"ms":8761,"input":8,"cache_write":16591,"cache_read":89761,"output":868,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"off","rep":1,"ok":true,"cost":0.005358720000000001,"turns":3,"ms":7851,"input":6,"cache_write":21576,"cache_read":67492,"output":736,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"build","arm":"on","rep":1,"ok":true,"cost":0.0043370200000000005,"turns":3,"ms":7754,"input":6,"cache_write":16301,"cache_read":64422,"output":864,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"build","arm":"off","rep":1,"ok":true,"cost":0.00467564,"turns":3,"ms":7035,"input":6,"cache_write":18685,"cache_read":64854,"output":579,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"off","rep":2,"ok":true,"cost":0.0035812200000000004,"turns":2,"ms":5093,"input":4,"cache_write":15110,"cache_read":35382,"output":410,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"tests","arm":"on","rep":1,"ok":false,"cost":0.00609182,"turns":5,"ms":13418,"input":10,"cache_write":20534,"cache_read":123502,"output":1498,"answer":"ANSWER: 1873, 4410, 7702"}
+{"task":"log-fatal","arm":"on","rep":2,"ok":true,"cost":0.0036595600000000005,"turns":2,"ms":4622,"input":4,"cache_write":15588,"cache_read":36856,"output":346,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"on","rep":2,"ok":true,"cost":0.0045714499999999995,"turns":3,"ms":8739,"input":6,"cache_write":16900,"cache_read":64535,"output":1091,"answer":"ANSWER: billing (322 ERROR lines)"}
+{"task":"json-admins","arm":"off","rep":2,"ok":true,"cost":0.00447564,"turns":3,"ms":8442,"input":6,"cache_write":16682,"cache_read":62314,"output":1031,"answer":"ANSWER: 437"}
+{"task":"log-errors","arm":"off","rep":2,"ok":true,"cost":0.004522310000000001,"turns":4,"ms":10032,"input":8,"cache_write":16203,"cache_read":88841,"output":785,"answer":"ANSWER: billing (322 ERROR lines)"}
+{"task":"json-admins","arm":"on","rep":2,"ok":true,"cost":0.0045953700000000005,"turns":3,"ms":8192,"input":6,"cache_write":17197,"cache_read":64737,"output":1016,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"off","rep":2,"ok":true,"cost":0.005319530000000001,"turns":3,"ms":7032,"input":6,"cache_write":21378,"cache_read":67483,"output":737,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"tests","arm":"on","rep":2,"ok":true,"cost":0.0053283,"turns":5,"ms":10962,"input":10,"cache_write":17841,"cache_read":121260,"output":1093,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"build","arm":"off","rep":2,"ok":true,"cost":0.00571872,"turns":3,"ms":6213,"input":6,"cache_write":23603,"cache_read":69852,"output":598,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"on","rep":3,"ok":true,"cost":0.0037935,"turns":2,"ms":4547,"input":4,"cache_write":15970,"cache_read":36860,"output":461,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"build","arm":"on","rep":2,"ok":true,"cost":0.00454048,"turns":3,"ms":8778,"input":6,"cache_write":16722,"cache_read":64648,"output":1098,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"off","rep":3,"ok":true,"cost":0.0035755200000000004,"turns":2,"ms":4336,"input":4,"cache_write":15109,"cache_read":35382,"output":399,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"off","rep":3,"ok":true,"cost":0.00417851,"turns":3,"ms":7383,"input":6,"cache_write":15976,"cache_read":61921,"output":727,"answer":"ANSWER: billing — 322 ERROR lines"}
+{"task":"log-errors","arm":"on","rep":3,"ok":true,"cost":0.00439925,"turns":3,"ms":7319,"input":6,"cache_write":16828,"cache_read":64705,"output":772,"answer":"ANSWER: billing, 322 ERROR lines"}
+{"task":"json-admins","arm":"on","rep":3,"ok":true,"cost":0.00502259,"turns":4,"ms":10661,"input":8,"cache_write":17117,"cache_read":92689,"output":1343,"answer":"ANSWER: 437"}
+{"task":"json-admins","arm":"off","rep":3,"ok":true,"cost":0.00436539,"turns":3,"ms":7664,"input":6,"cache_write":16704,"cache_read":62549,"output":797,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"off","rep":3,"ok":true,"cost":0.00458314,"turns":4,"ms":8343,"input":6,"cache_write":17296,"cache_read":63134,"output":984,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"tests","arm":"on","rep":3,"ok":true,"cost":0.00510912,"turns":4,"ms":9557,"input":8,"cache_write":18425,"cache_read":93882,"output":969,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"build","arm":"off","rep":3,"ok":true,"cost":0.005994750000000001,"turns":3,"ms":8457,"input":6,"cache_write":24128,"cache_read":69905,"output":939,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"build","arm":"on","rep":3,"ok":true,"cost":0.00451581,"turns":4,"ms":9737,"input":6,"cache_write":16670,"cache_read":64371,"output":1075,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"log-fatal","arm":"off","rep":4,"ok":true,"cost":0.00358074,"turns":2,"ms":4963,"input":4,"cache_write":15115,"cache_read":35384,"output":407,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-fatal","arm":"on","rep":4,"ok":true,"cost":0.00379904,"turns":2,"ms":5253,"input":4,"cache_write":15990,"cache_read":36864,"output":464,"answer":"ANSWER: req-97da2849d73e"}
+{"task":"log-errors","arm":"off","rep":4,"ok":true,"cost":0.00456189,"turns":4,"ms":8781,"input":8,"cache_write":16309,"cache_read":88479,"output":829,"answer":"ANSWER: billing (322 ERROR lines)"}
+{"task":"log-errors","arm":"on","rep":4,"ok":true,"cost":0.00509251,"turns":5,"ms":11995,"input":10,"cache_write":16831,"cache_read":120081,"output":1049,"answer":"ANSWER: billing, 322"}
+{"task":"json-admins","arm":"off","rep":4,"ok":true,"cost":0.004490170000000001,"turns":3,"ms":8232,"input":6,"cache_write":16905,"cache_read":62557,"output":966,"answer":"ANSWER: 437"}
+{"task":"json-admins","arm":"on","rep":4,"ok":true,"cost":0.004342550000000001,"turns":3,"ms":8579,"input":6,"cache_write":16474,"cache_read":64365,"output":807,"answer":"ANSWER: 437"}
+{"task":"tests","arm":"off","rep":4,"ok":true,"cost":0.0053577600000000005,"turns":3,"ms":7920,"input":6,"cache_write":21569,"cache_read":67486,"output":737,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"tests","arm":"on","rep":4,"ok":true,"cost":0.00538368,"turns":5,"ms":11951,"input":10,"cache_write":18091,"cache_read":121948,"output":1090,"answer":"ANSWER: case 1873, case 4410, case 7702"}
+{"task":"build","arm":"off","rep":4,"ok":true,"cost":0.00572373,"turns":3,"ms":6608,"input":6,"cache_write":23635,"cache_read":69763,"output":597,"answer":"ANSWER: src/billing/25e72c.ts:87"}
+{"task":"build","arm":"on","rep":4,"ok":true,"cost":0.00475491,"turns":4,"ms":9913,"input":8,"cache_write":16655,"cache_read":92261,"output":1001,"answer":"ANSWER: src/billing/25e72c.ts:87"}

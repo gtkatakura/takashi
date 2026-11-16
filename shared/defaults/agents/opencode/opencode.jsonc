@@ -1,0 +1,28 @@
+// Overlay on top of ~/.config/opencode/opencode.json (provider, theme and API keys stay there).
+// opencode merges both files; set-agent-skills.sh links this one to ~/.config/opencode/opencode.jsonc.
+{
+  "$schema": "https://opencode.ai/config.json",
+  // MCP servers connect for every agent, but each server's tools are denied below for everyone
+  // and allowed again only in the specialist that uses them (opencode/agents/*.md).
+  "mcp": {
+    "servers": {
+      // OAuth on first use: `opencode mcp auth figma`.
+      "figma": { "type": "remote", "url": "https://mcp.figma.com/mcp" },
+      // Served by the Figma desktop app (Dev Mode MCP server); enable it while the app serves it.
+      "figma-desktop": { "type": "remote", "url": "http://127.0.0.1:3845/mcp", "oauth": false, "disabled": true },
+      // Omarchy ships Chromium, not Google Chrome: point both servers at it.
+      "chrome-devtools": { "type": "local", "command": ["npx", "-y", "chrome-devtools-mcp@1.12.0", "--executablePath", "/usr/bin/chromium"] },
+      "playwright": { "type": "local", "command": ["npx", "-y", "@playwright/mcp@0.0.84", "--executable-path", "/usr/bin/chromium"] }
+    }
+  },
+  // Agent rules come after these and the last matching rule wins.
+  "permissions": [
+    // MCP tools: denied for every agent, allowed again in frontend.
+    { "action": "figma_*", "resource": "*", "effect": "deny" },
+    { "action": "figma-desktop_*", "resource": "*", "effect": "deny" },
+    { "action": "chrome-devtools_*", "resource": "*", "effect": "deny" },
+    { "action": "playwright_*", "resource": "*", "effect": "deny" },
+    // Skills only a specialist uses: denied here, allowed again in reviewer.
+    { "action": "skill", "resource": "review-changes", "effect": "deny" }
+  ]
+}

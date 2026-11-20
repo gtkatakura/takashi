@@ -31,6 +31,7 @@ eval "$(jq -r '
   @sh "
     cwd=\(.workspace.current_dir // .cwd // "")
     model=\(.model.display_name // "")
+    transcript=\(.transcript_path // "")
     effort=\(if .thinking.enabled == true then .effort.level // "" else "" end)
     elapsed=\(.cost.total_duration_ms | duration)
     tokens_used=\(.context_window.total_input_tokens | compact)
@@ -52,10 +53,25 @@ else
   git_state='✓'
 fi
 
+# Subagents still running, counted per model. Each has a .meta.json beside the session transcript; one cut off
+# mid-run never gets "finished", so only those whose own transcript changed in the last 10 minutes count
+subagents=''
+subagent_dir="${transcript%.jsonl}/subagents"
+if [ -n "$transcript" ] && [ -d "$subagent_dir" ]; then
+  subagents=$(find "$subagent_dir" -name 'agent-*.jsonl' -mmin -10 2>/dev/null \
+    | sed 's/\.jsonl$/.meta.json/' \
+    | xargs -r jq -r 'select(.finished != true) | .model // "session"' 2>/dev/null \
+    | sort | uniq -c | awk '{ printf "%s%s×%s", sep, $1, $2; sep = " " }')
+fi
+
 paint() { printf '\033[%sm%s\033[0m' "$1" "$2"; }
 separator() { paint '38;2;67;76;94' ' | '; }
 
 paint '38;2;143;188;187' "🤖 $model"
+if [ -n "$subagents" ]; then
+  separator
+  paint '38;2;136;192;208' "🧩 $subagents"
+fi
 separator
 paint '38;2;236;239;244' "💪 $effort"
 separator

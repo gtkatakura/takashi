@@ -12,7 +12,7 @@ green_text "Installing agent skills"
 # pacman nodejs, which would shadow mise's node (/usr/bin comes first on Omarchy's PATH)
 skills_cli() { mise exec node -- npx -y skills "$@"; }
 
-# bun runs the git-watch-commits helper
+# bun runs the skill helpers (git-watch-commits, proof)
 command -v bun &>/dev/null || mise use -g bun@latest
 
 skill_agents=(-a opencode -a claude-code)

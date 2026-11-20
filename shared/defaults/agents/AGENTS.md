@@ -30,3 +30,9 @@ Loaded in every opencode session: linked to `~/.config/opencode/AGENTS.md` by `o
 ## Evidence
 
 Before saying something works, is done, or is a bug, follow the `work-verify-claims` skill: label claims as verified or inferred, and report what was not tested.
+
+To show a change to someone who has only the task's title and description, follow the `proof` skill: a verdict per promise, from one script run on the base and on the change.
+
+## State
+
+A skill or tool that keeps state between sessions writes it under `${TAKASHI_STATE_DIR:-${XDG_STATE_HOME:-~/.local/state}/takashi}/<tool>/`, never inside a repository. `proof` is the first to use it.

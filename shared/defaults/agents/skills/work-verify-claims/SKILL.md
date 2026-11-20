@@ -21,6 +21,7 @@ Applies before saying something works, is done, or is a bug, and to "funciona tu
 - **Self-assessment** ("are the tests good?", "what's left?"): what is solid; a numbered list of what is missing or weak; an offer to implement it. Implement when told; do not defend the work.
 - **Status reports**: what was done (commit SHAs), what was verified (counts), whether CI was checked, what is open, and the decisions needed, each with a recommendation.
 - **Review findings** use the `review-changes` format.
+- **Evidence for another reader** (a reviewer, the owner coming back later) is a `proof`: a verdict per promise, from one script run on the base and on the change.
 
 ## Examples
 

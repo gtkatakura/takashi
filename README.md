@@ -7,7 +7,7 @@ A comprehensive development environment setup for Omarchy and macOS, providing a
 One command for every machine. It detects the system and runs that system's setup:
 
 ```bash
-bash <(curl -fsSL setup.gtkatakura.com)
+bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 ```
 
 | System | Before running |

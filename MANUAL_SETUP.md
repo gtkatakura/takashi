@@ -9,3 +9,4 @@
 5. echo 'fs.inotify.max_user_watches=524288' | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 6. Steam accounts (Omarchy): steam-account add <name> for each one, then log in once with "remember me" (labs is the default Flatpak Steam)
 7. Figma MCP (Omarchy): opencode mcp auth figma
+8. HyprMac (macOS): open it once and grant Accessibility (System Settings → Privacy & Security → Accessibility). The Hypr key is Caps Lock: leave it as "⇪ Caps Lock" in System Settings → Keyboard → Keyboard Shortcuts → Modifier Keys, on each keyboard

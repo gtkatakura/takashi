@@ -15,6 +15,10 @@ fi
 brew install --cask raycast
 brew install --cask superwhisper
 
+# Tiling window manager in the style of Hyprland, so the Mac is driven like the Omarchy desktop.
+# It asks for the Accessibility permission on first launch (MANUAL_SETUP.md)
+brew install --cask hyprmac
+
 brew install --cask brave-browser
 brew install --cask google-chrome
 brew install --cask firefox
@@ -69,6 +73,11 @@ brew install docker-compose
 brew install orbstack
 brew install mise
 mise use -g bun@latest
+
+# Coding agents, through mise like on Omarchy, which keeps them at the latest version.
+# node first: opencode comes from npm. --yes accepts the build scripts opencode's package asks to run
+mise use -g node@latest
+mise use -g --yes claude@latest codex@latest pi@latest oh-my-pi@latest opencode@latest
 brew install gnupg
 brew install gh
 brew install rtk

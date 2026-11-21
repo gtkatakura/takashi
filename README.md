@@ -7,7 +7,7 @@ A comprehensive development environment setup for Omarchy and macOS, providing a
 One command for every machine. It detects the system and runs that system's setup:
 
 ```bash
-bash <(curl -fsSL setup.gtkatakura.com)
+bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 ```
 
 | System | Before running |
@@ -74,6 +74,7 @@ bash <(curl -fsSL setup.gtkatakura.com)
 
 ### Productivity & Note-taking
 
+- **HyprMac** (macOS) - Tiling window manager in the style of Hyprland: automatic layout, ten workspaces, keyboard-first
 - **Raycast** (macOS) - Productivity tool and launcher
 - **SuperWhisper** (macOS) - Voice-to-text transcription tool
 - **Obsidian** (macOS) - Knowledge base and note-taking app
@@ -102,6 +103,7 @@ bash <(curl -fsSL setup.gtkatakura.com)
 
 ### AI & ML
 
+- **Coding agents** (macOS) - Claude Code, Codex, pi, oh-my-pi and opencode, installed through mise at their latest version (Omarchy ships them the same way)
 - **LM Studio** - Desktop app for running local language models
 - **Agent skills** (Omarchy) - Skills for opencode and Claude Code (PR shipping, reviews, library spikes, research studies, refactoring, evidence before claiming done, before and after proof of a change) plus pinned third-party skills; opencode also gets slash commands, `reviewer` and `frontend` agents (Figma, Chrome DevTools and Playwright MCP) and global instructions, all kept in `shared/defaults/agents`
 
@@ -134,6 +136,7 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 5. **File Watcher Limits** - Increase system file watcher limits for development
 6. **Steam Accounts** (Omarchy) - Add each account with `steam-account add <name>` and log in once, with "remember me"
 7. **Figma MCP** (Omarchy) - Sign in once with `opencode mcp auth figma`
+8. **HyprMac** (macOS) - Grant the Accessibility permission on first launch and keep Caps Lock as Caps Lock in the Modifier Keys settings
 
 ## Platform Differences
 
@@ -148,6 +151,7 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 ### macOS Features
 
 - Comprehensive Homebrew-based installations
+- Tiling windows and workspaces like the Omarchy desktop (HyprMac)
 - Enhanced productivity tools (Raycast, SuperWhisper)
 - Full office and creative suite support
 - Advanced terminal tools (eza, zoxide, lazygit, lazydocker)

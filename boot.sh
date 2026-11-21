@@ -2,7 +2,7 @@
 
 # One entry point for every machine:
 #
-#   bash <(curl -fsSL setup.gtkatakura.com)
+#   bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 #
 # It finds out which system it is running on and hands over to that system's own boot.sh, which checks
 # the version, clones this repository and installs. TAKASHI_REF picks a branch, e.g. to test a PR.

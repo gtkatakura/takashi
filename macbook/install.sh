@@ -73,6 +73,11 @@ brew install docker-compose
 brew install orbstack
 brew install mise
 mise use -g bun@latest
+
+# Coding agents, through mise like on Omarchy, which keeps them at the latest version.
+# node first: opencode comes from npm. --yes accepts the build scripts opencode's package asks to run
+mise use -g node@latest
+mise use -g --yes claude@latest codex@latest pi@latest oh-my-pi@latest opencode@latest
 brew install gnupg
 brew install gh
 brew install rtk

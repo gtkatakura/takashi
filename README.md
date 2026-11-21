@@ -74,6 +74,7 @@ bash <(curl -fsSL setup.gtkatakura.com)
 
 ### Productivity & Note-taking
 
+- **HyprMac** (macOS) - Tiling window manager in the style of Hyprland: automatic layout, ten workspaces, keyboard-first
 - **Raycast** (macOS) - Productivity tool and launcher
 - **SuperWhisper** (macOS) - Voice-to-text transcription tool
 - **Obsidian** (macOS) - Knowledge base and note-taking app
@@ -134,6 +135,7 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 5. **File Watcher Limits** - Increase system file watcher limits for development
 6. **Steam Accounts** (Omarchy) - Add each account with `steam-account add <name>` and log in once, with "remember me"
 7. **Figma MCP** (Omarchy) - Sign in once with `opencode mcp auth figma`
+8. **HyprMac** (macOS) - Grant the Accessibility permission on first launch and keep Caps Lock as Caps Lock in the Modifier Keys settings
 
 ## Platform Differences
 
@@ -148,6 +150,7 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 ### macOS Features
 
 - Comprehensive Homebrew-based installations
+- Tiling windows and workspaces like the Omarchy desktop (HyprMac)
 - Enhanced productivity tools (Raycast, SuperWhisper)
 - Full office and creative suite support
 - Advanced terminal tools (eza, zoxide, lazygit, lazydocker)

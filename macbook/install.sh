@@ -15,6 +15,10 @@ fi
 brew install --cask raycast
 brew install --cask superwhisper
 
+# Tiling window manager in the style of Hyprland, so the Mac is driven like the Omarchy desktop.
+# It asks for the Accessibility permission on first launch (MANUAL_SETUP.md)
+brew install --cask hyprmac
+
 brew install --cask brave-browser
 brew install --cask google-chrome
 brew install --cask firefox

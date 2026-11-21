@@ -1,6 +1,6 @@
 # Takashi Development Environment
 
-A comprehensive development environment setup for Omarchy, Ubuntu 24.04, and macOS, providing a curated collection of tools and applications for modern software development.
+A comprehensive development environment setup for Omarchy and macOS, providing a curated collection of tools and applications for modern software development.
 
 ## Quick Start
 
@@ -13,7 +13,6 @@ bash <(curl -fsSL setup.gtkatakura.com)
 | System | Before running |
 | --- | --- |
 | Omarchy (Arch Linux) | [Omarchy](https://omarchy.org/) 4 or later must be installed |
-| Ubuntu 24.04 | [Omakub](https://omakub.org/) must be installed. Without curl: `bash <(wget -qO- setup.gtkatakura.com)` |
 | macOS | Nothing: Homebrew is installed when it is missing |
 
 `TAKASHI_REF=<branch>` in front of the command installs from a branch, for example to test a PR before it is merged.

@@ -20,26 +20,20 @@ case "$(uname -s)" in
     id=$([ -f /etc/os-release ] && . /etc/os-release && echo "$ID" || true)
     case "$id" in
       omarchy) platform=omarchy ;;
-      ubuntu) platform=ubuntu-24_04 ;;
     esac
     ;;
 esac
 
 if [ -z "$platform" ]; then
   echo "No setup for this system: $(uname -s)${id:+ ($id)}."
-  echo "Supported: Omarchy 4+ (https://omarchy.org), Ubuntu 24.04 with Omakub (https://omakub.org) and macOS."
+  echo "Supported: Omarchy 4+ (https://omarchy.org) and macOS."
   exit 1
 fi
 
 ref=${TAKASHI_REF:-main}
 url="https://raw.githubusercontent.com/gtkatakura/takashi/$ref/$platform/boot.sh"
 
-# A fresh Ubuntu has wget and no curl
-if command -v curl &>/dev/null; then
-  boot=$(curl -fsSL "$url")
-else
-  boot=$(wget -qO- "$url")
-fi
+boot=$(curl -fsSL "$url")
 
 echo "Detected $platform. Running its setup from takashi ($ref)..."
 bash <(echo "$boot")

@@ -1,30 +1,21 @@
 # Takashi Development Environment
 
-A comprehensive development environment setup for Omarchy, Ubuntu 24.04, and macOS, providing a curated collection of tools and applications for modern software development.
+A comprehensive development environment setup for Omarchy and macOS, providing a curated collection of tools and applications for modern software development.
 
 ## Quick Start
 
-### Omarchy (Arch Linux)
-
-> **Prerequisites:** [Omarchy](https://omarchy.org/) must be installed before running the setup script.
+One command for every machine. It detects the system and runs that system's setup:
 
 ```bash
-bash <(curl -fsSL omarchy.gtkatakura.com)
+bash <(curl -fsSL setup.gtkatakura.com)
 ```
 
-### Ubuntu 24.04
+| System | Before running |
+| --- | --- |
+| Omarchy (Arch Linux) | [Omarchy](https://omarchy.org/) 4 or later must be installed |
+| macOS | Nothing: Homebrew is installed when it is missing |
 
-> **Prerequisites:** [Omakub](https://omakub.org/) must be installed before running the setup script.
-
-```bash
-bash <(wget -qO- ubuntu.gtkatakura.com)
-```
-
-### macOS
-
-```bash
-bash <(curl -fsSL mac.gtkatakura.com)
-```
+`TAKASHI_REF=<branch>` in front of the command installs from a branch, for example to test a PR before it is merged.
 
 ## What's Included
 
@@ -93,8 +84,6 @@ bash <(curl -fsSL mac.gtkatakura.com)
 ### Development & API Tools
 
 - **Postman** - API development and testing platform
-- **Reactotron** (macOS, Ubuntu) - Desktop app for inspecting React JS and React Native projects
-- **Charles Proxy 4** (macOS, Ubuntu) - Web debugging proxy application
 
 ### Containerization & Virtualization
 
@@ -122,7 +111,7 @@ bash <(curl -fsSL mac.gtkatakura.com)
 
 ### Security & VPN
 
-- **AWS VPN Client** (macOS, Ubuntu) - Client for AWS Client VPN endpoints
+- **AWS VPN Client** (macOS) - Client for AWS Client VPN endpoints
 - **1Password CLI** (macOS) - Command line interface for 1Password
 
 ### System Configuration
@@ -163,20 +152,12 @@ After installation, complete the setup with tasks in [MANUAL_SETUP.md](MANUAL_SE
 - Full office and creative suite support
 - Advanced terminal tools (eza, zoxide, lazygit, lazydocker)
 
-### Ubuntu Features
-
-- GNOME-specific configurations and extensions
-- Flatpak and Snap package support
-- KVM virtualization setup
-- Desktop environment customizations
-
 ## Project Structure
 
 ```
 takashi/
 ├── omarchy/         # Omarchy (Arch Linux) setup
 ├── macbook/         # macOS-specific setup
-├── ubuntu-24_04/    # Ubuntu 24.04-specific setup
 ├── shared/          # Cross-platform configurations
 └── cheat-sheets/    # Reference documentation
 ```

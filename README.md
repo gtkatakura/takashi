@@ -4,27 +4,19 @@ A comprehensive development environment setup for Omarchy, Ubuntu 24.04, and mac
 
 ## Quick Start
 
-### Omarchy (Arch Linux)
-
-> **Prerequisites:** [Omarchy](https://omarchy.org/) must be installed before running the setup script.
+One command for every machine. It detects the system and runs that system's setup:
 
 ```bash
-bash <(curl -fsSL omarchy.gtkatakura.com)
+bash <(curl -fsSL setup.gtkatakura.com)
 ```
 
-### Ubuntu 24.04
+| System | Before running |
+| --- | --- |
+| Omarchy (Arch Linux) | [Omarchy](https://omarchy.org/) 4 or later must be installed |
+| Ubuntu 24.04 | [Omakub](https://omakub.org/) must be installed. Without curl: `bash <(wget -qO- setup.gtkatakura.com)` |
+| macOS | Nothing: Homebrew is installed when it is missing |
 
-> **Prerequisites:** [Omakub](https://omakub.org/) must be installed before running the setup script.
-
-```bash
-bash <(wget -qO- ubuntu.gtkatakura.com)
-```
-
-### macOS
-
-```bash
-bash <(curl -fsSL mac.gtkatakura.com)
-```
+`TAKASHI_REF=<branch>` in front of the command installs from a branch, for example to test a PR before it is merged.
 
 ## What's Included
 

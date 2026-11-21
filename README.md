@@ -124,6 +124,40 @@ bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 - **Keyboard layouts** - US and US International with Alt+Space switching (`kc` / `kt` to pick one)
 - **Numpad workspaces** (Omarchy) - Super + numpad switches workspaces, with Shift / Shift+Alt to move windows
 - **Rosetta 2** (macOS) - Translation layer for x86 apps on Apple Silicon
+- **Dependency-download guards** - see below
+
+## Dependency-download guards
+
+`shared/install/terminal/set-supply-chain.sh` protects every package download against compromised
+releases, typosquats and install-script payloads, with no proxy and no shell aliases, so `bun run`,
+`bun test` and `python3` cost nothing extra:
+
+| Guard | Where | Covers |
+|---|---|---|
+| 7-day cooldown | `~/.config/.bunfig.toml`, `~/.npmrc`, `~/.config/pnpm/{rc,config.yaml}`, `~/.config/uv/uv.toml`, mise `minimum_release_age` | Bun, bunx, npm, pnpm 10 and 11+, uv, every mise tool |
+| Socket malware scanner, pinned in `shared/defaults/bun-security-scanner` | `~/.config/.bunfig.toml`, `~/.config/aube/config.toml` | `bun install`/`add`, `bunx`, mise `npm:` tools, in any shell, IDE or agent |
+| No unapproved install scripts | Bun and pnpm defaults, npm `strict-allow-scripts`, mise `allow_builds` | npm postinstall payloads |
+| Provenance | mise `paranoid = ["provenance"]` plus its default attestations, SLSA and cosign checks | binaries installed by mise |
+| No self-updates | claude, codex, copilot, gemini, opencode, grok settings | agent CLIs change only through `mise upgrade`, after the cooldown |
+
+The scanner fails closed: offline, or with the Socket API down, `bun install` stops. Cost: about
++0.3 s per `bun install` and +2 s per mise `npm:` install. A project that pins Node below 22.6 makes
+mise `npm:` installs fail inside it; install those tools from `~`.
+
+- **Check it**: `verify-supply-chain` installs a test package Socket flags as malware and versions
+  published today, and fails if any guard lets them through. Run it after `mise upgrade`, a Bun
+  upgrade or a scanner bump; setup runs it at the end.
+- **Offline or bootstrap**: `bun-noscan install` skips the scanner and keeps the cooldown.
+- **Scanner updates**: the scanner is pinned (version and `bun.lock` hash). Bump it on purpose a few
+  times a year: change `package.json`, run `bun-noscan install` there, rerun the installer.
+- **Broken scanner in mise**: set `securityScanner = ""` in `~/.config/aube/config.toml`.
+- **Urgent fix younger than 7 days**: exempt just that package with `minimumReleaseAgeExcludes`
+  (Bun), `min-release-age-exclude` (npm), `minimumReleaseAgeExclude` (pnpm),
+  `exclude-newer-package` (uv) or `minimum_release_age_excludes` (mise).
+- **Private registries**: the free scanner sends each package name and version to Socket. Use
+  `socket login` for an organisation token, or `bun-noscan`.
+- **Not covered**: Go modules (no cooldown exists; `GOSUMDB` stays on), Bundler before 4.0.13,
+  `http:` mise tools such as `muse` (unsigned, no release date).
 
 ## Manual Setup
 

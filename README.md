@@ -149,8 +149,58 @@ The scanner fails closed. Offline, or with the Socket API down, `bun install` st
 +0.3 s per `bun install` and +2 s per mise `npm:` install. Inside a project that pins Node below
 22.6, mise `npm:` installs fail, so install those tools from `~`.
 
-- **Check it**: in an empty directory, `bun add safe-chain-test` must stop with a Socket advisory.
-  `safe-chain-test` is a test package flagged as malware.
+### When the scanner stops an install
+
+Bun resolves the whole dependency tree, then hands every package and version to the scanner before it
+downloads anything. The scanner asks Socket about each one and answers with an advisory per flagged
+package:
+
+| Level | What Bun does |
+|---|---|
+| `fatal` | Stops the install and exits non-zero. `package.json`, the lockfile and `node_modules` stay as they were. |
+| `warn` | Asks whether to continue in a terminal. In CI it stops. |
+
+A package Socket knows as malware comes back `fatal`. This is the real output for
+`bun add safe-chain-test`, a test package kept for that purpose:
+
+```text
+⚠ Socket Security Scanner free mode. Set SOCKET_API_TOKEN to use your Socket org settings.
+
+  FATAL: pkg:npm/safe-chain-test@0.0.1-security
+
+Package has been removed from the npm registry due to security concerns.
+This is a placeholder package published by the npm security team to prevent malicious usage of the package name.
+The original package likely contained harmful code.
+
+Fix: Remove this package and either replace with a verified alternative from a trusted source or revert to a known-safe previous version.
+
+    https://socket.dev/npm/package/safe-chain-test/overview/0.0.1-security
+
+1 advisory (1 fatal)
+Installation aborted due to fatal security advisories
+```
+
+- `pkg:npm/<name>@<version>` names the package, which can be a dependency deep in the tree rather
+  than the one you asked for. `bun why <name>` shows who pulls it in.
+- The link opens Socket's page for that version, with the alerts and the code it found.
+- The first line only says no Socket token is set. Free mode still blocks known malware.
+
+The same block from mise, for an `npm:` tool, reads
+`aube install failed: refusing to install package(s) flagged by securityScanner = …`, followed by
+the same package, description and link.
+
+What to do:
+
+1. Read the Socket page. If the package is malware, drop it. If it came in as a dependency, update or
+   replace the package that pulls it in.
+2. If the alert is about one version only, pin a version Socket does not flag.
+3. If you are sure it is a false positive, turn the scanner off for that one install, as for offline
+   work below, and turn it back on right after.
+
+A "Security scanner failed" error is different: the scanner could not reach Socket, so nothing was
+checked and the install stopped anyway.
+
+- **Check it**: in an empty directory, `bun add safe-chain-test` must stop with the output above.
 - **Offline**: comment out the `[install.security]` lines in `~/.config/.bunfig.toml` (Bun) or
   set `securityScanner = ""` in `~/.config/aube/config.toml` (mise). The cooldown stays.
 - **Scanner updates**: the scanner is pinned by version and `bun.lock` hash. Bump it on purpose a

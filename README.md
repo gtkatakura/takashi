@@ -124,6 +124,43 @@ bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 - **Keyboard layouts** - US and US International with Alt+Space switching (`kc` / `kt` to pick one)
 - **Numpad workspaces** (Omarchy) - Super + numpad switches workspaces, with Shift / Shift+Alt to move windows
 - **Rosetta 2** (macOS) - Translation layer for x86 apps on Apple Silicon
+- **Dependency-download guards** - see below
+
+## Dependency-download guards
+
+Use **Bun** for JavaScript and **uv** for Python. npm, pnpm, pip and Bundler are set up too, for
+third-party projects that need them.
+
+`shared/install/terminal/set-supply-chain.sh` protects every package download against compromised
+releases, typosquats and install-script payloads. It only sets each tool's own settings: there is
+no proxy, no shell alias and no wrapper script, so `bun run`, `bun test` and `python3` cost
+nothing extra.
+
+| Guard | Setting | Covers |
+|---|---|---|
+| 7-day cooldown | Bun `minimumReleaseAge`, npm `min-release-age`, pnpm `minimumReleaseAge`, uv `exclude-newer`, mise `minimum_release_age`, Bundler `cooldown` (4.0.13+) | Bun, bunx, npm, pnpm 10 and 11+, uv, every mise tool |
+| Socket malware scanner, pinned in `shared/defaults/bun-security-scanner` | Bun `[install.security] scanner`, aube `securityScanner` | `bun install`/`add`, `bunx`, mise `npm:` tools, in any shell, IDE or agent |
+| No unapproved install scripts | Bun and pnpm defaults, npm `strict-allow-scripts`, mise `allow_builds` | postinstall payloads |
+| No stray pip installs | `PIP_REQUIRE_VIRTUALENV=1` | pip in third-party projects |
+| Provenance | mise `paranoid = ["provenance"]`, plus its default attestation, SLSA and cosign checks | binaries installed by mise |
+| No self-updates | claude, codex, copilot, gemini, opencode and grok settings | agent CLIs change only through `mise upgrade`, after the cooldown |
+
+The scanner fails closed. Offline, or with the Socket API down, `bun install` stops. It costs about
++0.3 s per `bun install` and +2 s per mise `npm:` install. Inside a project that pins Node below
+22.6, mise `npm:` installs fail, so install those tools from `~`.
+
+- **Check it**: in an empty directory, `bun add safe-chain-test` must stop with a Socket advisory.
+  `safe-chain-test` is a test package flagged as malware.
+- **Offline**: comment out the `[install.security]` lines in `~/.config/.bunfig.toml` (Bun) or
+  set `securityScanner = ""` in `~/.config/aube/config.toml` (mise). The cooldown stays.
+- **Scanner updates**: the scanner is pinned by version and `bun.lock` hash. Bump it on purpose a
+  few times a year: change `package.json` there, run `bun install`, then rerun the installer.
+- **Urgent fix younger than 7 days**: exempt just that package with `minimumReleaseAgeExcludes`
+  (Bun), `min-release-age-exclude` (npm), `minimumReleaseAgeExclude` (pnpm),
+  `exclude-newer-package` (uv) or `minimum_release_age_excludes` (mise).
+- **Private registries**: the free scanner sends each package name and version to Socket. Use
+  `socket login` for an organisation token, or turn the scanner off as for offline work.
+- **Not covered**: Go modules (no cooldown exists; `GOSUMDB` stays on), and Bundler before 4.0.13.
 
 ## Manual Setup
 

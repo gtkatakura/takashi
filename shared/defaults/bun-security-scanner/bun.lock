@@ -1,0 +1,14 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "dependencies": {
+        "@socketsecurity/bun-security-scanner": "1.1.3",
+      },
+    },
+  },
+  "packages": {
+    "@socketsecurity/bun-security-scanner": ["@socketsecurity/bun-security-scanner@1.1.3", "", {}, "sha512-etUBYn5rx/ubI2JaAplX/Dr48X4uufcXVxvcVp68DZFne+ROlUQTcEw7pJFgq6UY4PWbChvhWnoNQBnFWwXyEA=="],
+  }
+}

@@ -72,6 +72,10 @@ brew install docker
 brew install docker-compose
 brew install orbstack
 brew install mise
+
+# Shared setup, which puts the dependency-download guards in place, runs before mise installs anything
+source ~/.local/share/takashi/shared/install/terminal.sh
+
 mise use -g bun@latest
 
 # Coding agents, through mise like on Omarchy, which keeps them at the latest version.
@@ -84,8 +88,6 @@ brew install rtk
 brew install ccusage
 brew install lazygit
 brew install lazydocker
-
-source ~/.local/share/takashi/shared/install/terminal.sh
 
 sudo softwareupdate --instal-rosetta
 

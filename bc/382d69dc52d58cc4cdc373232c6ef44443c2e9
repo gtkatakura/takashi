@@ -1,0 +1,65 @@
+README.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 3,7,10,13-16,18,77,106,108,116,127-213,226,241
+MANUAL_SETUP.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 12
+macbook/boot.sh
+  s_9410b6fbb48b9b::t_a27c5fd962e175 19-20,22
+shared/defaults/agents/prompts/proof.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-8
+shared/defaults/agents/skills/proof/scripts/proof.ts
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-658
+shared/defaults/agents/skills/proof/references/tests.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-69
+boot.sh
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-39
+shared/defaults/agents/skills/proof/SKILL.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-73
+shared/defaults/agents/skills/proof/references/methods.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-70
+shared/defaults/agents/skills/proof/references/ui.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-40
+shared/defaults/bun-security-scanner/scanner.mjs
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1
+shared/install/terminal/set-supply-chain.sh
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-102
+shared/defaults/agents/skills/proof/references/other.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-50
+shared/defaults/agents/skills/work-verify-claims/SKILL.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 24
+shared/defaults/agents/AGENTS.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 33-38
+shared/defaults/agents/skills/proof/references/architecture.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-56
+shared/defaults/agents/skills/proof/references/api.md
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-57
+shared/defaults/bash/supply-chain.sh
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1-10
+macbook/install.sh
+  s_9410b6fbb48b9b::t_a27c5fd962e175 18-21,75-78,80-84
+shared/defaults/bun-security-scanner/package.json
+  s_9410b6fbb48b9b::t_a27c5fd962e175 1
+shared/defaults/claude/statusline.sh
+  s_9410b6fbb48b9b::t_a27c5fd962e175 34,56-66,71-74
+omarchy/install/terminal/set-agent-skills.sh
+  s_9410b6fbb48b9b::t_a27c5fd962e175 15
+shared/defaults/bash/rc.sh
+  s_9410b6fbb48b9b::t_a27c5fd962e175 8
+shared/defaults/bun-security-scanner/bun.lock
+  s_9410b6fbb48b9b::t_8990b11714cb78 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bc382d69dc52d58cc4cdc373232c6ef44443c2e9",
+  "prompts": {},
+  "sessions": {
+    "s_9410b6fbb48b9b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b6cbaf12-9ccc-4161-8e35-662477b91e5d",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

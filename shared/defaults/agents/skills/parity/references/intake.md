@@ -15,7 +15,7 @@
 | 3 | Which claim is under test, in the challenger's own words, with its URL? | The study tests a claim nobody made |
 | 4 | Which adopter profiles get a verdict: your own repositories, or named kinds of project? | One yes or no that fits nobody |
 | 5 | Which versions, as of which cut date, stable or pre-release? | A nightly is compared with a two-year-old stable |
-| 6 | Which surfaces are in focus, mapped for later, out? Which come first? | Depth is spent on what no profile uses; the first report covers what matters least |
+| 6 | Which surfaces are in focus, mapped for later, out? Which extensions (plugins) count as the incumbent's surface? | Depth is spent on what no profile uses; the plugins every real config uses are left out |
 | 7 | What counts as equivalent: identical output, the same findings whatever the wording and order, the same exit code? | Every reworded message is a gap, or none is |
 | 8 | Which floors must hold for any verdict better than "not yet" (no lost error-level finding, same exit code in CI)? | A blocker is traded for speed |
 | 9 | Which corpus may be used and run: your repositories, public ones, the incumbent's own tests? What may be downloaded? | A gap is stated from reading and never reproduced |
@@ -35,7 +35,7 @@ Released by the owner on <date>. Changed only by the owner; each change is dated
 3. Claim under test — the challenger's words, URL, access date; how a user would read it.
 4. Profiles — | Id | Who | Repositories or configs that stand for it | (one verdict each)
 5. Versions — | Project | Version | Released | Channel | Commit | ; the cut date.
-6. Surfaces — | In focus | Mapped for later | Out |
+6. Surfaces — | In focus | Mapped for later | Out | ; the boundary: which extensions count as the incumbent's surface.
 7. Equivalence — what "the same result" means per surface, and what the normaliser may drop.
 8. Floors — what must hold for any verdict better than "not yet".
 9. Premises — | Id | Premise | Class (frame, current state, usage, method) | Declared by | Evidence or HYPOTHESIS | Overturned by |
@@ -55,8 +55,10 @@ Section 13 is filled at the baseline (step 5) and released then. A re-pin of the
 | When | Bring | Owner decides |
 |---|---|---|
 | Charter | The charter and the premises you are least sure of | Release or change |
+| Frame attack | `frame.md`, each BLOCKING objection with a recommendation | Accept or reject each; release the charter again if it changed |
+| After the inventory (a note, no wait) | Units counted per surface, what was hard to list | Nothing; may correct the boundary |
 | After the baseline | The baseline report: first ledger, verdict range per profile, units found in only one list, the increment plan with the pilot | The order; what is out |
 | After the pilot | Its report; what a unit costs; what the scripts could not settle | The size of the next increments |
 | End of each released batch, or a stop condition inside it | The increment reports: ledger, verdict ranges, new gaps, what changed before, the next slice | Go on, reorder, widen, drop, correct a weight or a definition, or re-pin the versions |
-| Divergence open two increments | Each advocate's position and evidence, the judge's recommendation | The divergence |
+| A divergence (an objection the judge decided and an advocate still disputes after two increments) | Each advocate's position and evidence, the judge's decision | The divergence |
 | Complete, or stopped | Synthesis with its coverage, verdict per profile, decisions with recommendations, defects found, what is not claimed | The decisions; what goes upstream or public |

@@ -1,5 +1,7 @@
 # Comparing fairly
 
+Two words used throughout. In a **gap** cell the challenger is the **graded side** and the incumbent the **reference side**. In a **reverse** cell (something the challenger offers that the incumbent lacks) it is the other way round. Every rule below is written for the graded side and holds in both directions.
+
 ## Surfaces
 
 One inventory agent per surface. Adapt the list to the kind of tool and record what was dropped.
@@ -11,32 +13,46 @@ One inventory agent per surface. Adapt the list to the kind of tool and record w
 | Configuration | File formats, discovery, inheritance, overrides, ignore files, inline directives |
 | CLI | Flags, exit codes, stdin, output formats |
 | Programmatic API | What other programs import or call |
-| Extension points | Plugins, custom rules, parsers, hooks, and the most used extensions that rely on them |
+| Extension points | Plugins, custom rules, parsers, hooks |
 | Inputs and platforms | Languages, file types, runtimes, operating systems |
 | Integrations | Editors, CI, pre-commit, tools that call the incumbent |
 | Output | Diagnostics, positions, fixes, suggestions |
 | Performance | Cold run, warm run, memory, behaviour at scale. Runtime only |
-| Migration | Converter, guide, what it drops in silence, running both side by side |
-| Project health | Licence, governance, release cadence, security response. Facts for both sides, no ladder |
+| Migration | Converter, guide, what it drops in silence, running both side by side. Listed from both sides, not blind |
+
+**Boundary.** The charter says which extensions count as the incumbent's surface (for a linter, which plugins): those the profiles' configs use are in by default. An extension that is in has its own behaviour and options units.
+
+**Project health** (licence, governance, release cadence, security response) is a table of facts for both sides in the synthesis. It has no units in the ledger.
 
 ## The parity ladder
 
 | Value | Means | Least proof |
 |---|---|---|
 | `absent` | No counterpart | Read: where it was searched (docs, source, tracker) |
-| `declared` | The challenger says it has it; behaviour not checked | Read |
+| `declared` | A counterpart exists by name; behaviour not checked | The name match, or the graded side's own claim |
 | `partial` | Exists and behaves differently; every known difference listed | Read for a stated difference, run for a found one |
-| `equivalent` | The same result, by the charter's definition | Read: the incumbent's cases present and not skipped in the challenger's tests, or matching schema and code. Run: on the inputs run |
-| `superior` | Equivalent, plus a measured thing the incumbent lacks | Run |
+| `equivalent` | The same result, by the charter's definition | Read: the reference side's cases present and not skipped in the graded side's tests at the pinned tag, or matching schema and code. Run: on the inputs run |
+| `superior` | Equivalent, plus a measured thing the reference side lacks | Run |
 | `not-needed` | The need the unit served is met another way (built in, obsolete) | Read, plus one run showing the need is met |
-| `non-goal` | The challenger states it will not do it | Read: link and date |
 | `unknown` | Not examined | — |
 
-Reverse gaps use the same ladder with the incumbent as the one graded, and go through the same queue and the same cases.
+Why a gap stands (`absent` or `partial`) is its **gap status**: `non-goal` (the graded side states it will not do it: link, date), `tracked` (issue link), `in progress` (pull request link), `no statement`. Each with the date it was read.
 
-Gap status: `non-goal`, `tracked` (issue link), `in progress` (pull request link), `unknown`, each with the date it was read.
+## Ledger states
 
-Ledger state of a cell: `untouched`, `baseline` (a value by script only), `read` (settled by reading, no gap), `candidate` (waiting for a case), `confirmed` or `refuted` (a runtime case), `not runnable` (with the reason), `out` (owner decision).
+How far the examination of a cell got. Derived by script from the cell, never typed.
+
+| State | Means | Open |
+|---|---|---|
+| `untouched` | No script reached it yet | yes |
+| `baseline` | A provisional value by script (`absent` or `declared` from a name match) | yes |
+| `candidate` | Mapped by the static team, not settled as `equivalent`; waiting for a case | yes |
+| `read` | Reading settled it as `equivalent` | no |
+| `run` | A case settled it. The case result is `confirmed` (the gap is real) or `refuted` (there is none) | no |
+| `not runnable` | No case could be run; the reason is recorded | no |
+| `out` | Left out by owner decision | no |
+
+A baseline value is a guess: it enters no verdict as parity and none as a gap. A `not runnable` cell is settled, and every verdict it touches names it.
 
 ## Weights
 
@@ -47,7 +63,11 @@ A weight is a count, kept with its source.
 - **A seeded sample of public repositories** from a stated population (dependents, a registry's top N): how many use the unit.
 - **Registry downloads** of extensions.
 
-Weight values: `core` (in a recommended preset, or used by most of the sample), `common`, `niche`, `unknown`. The thresholds go in the charter before counting.
+Weight values: `core` (in a recommended preset, or used by most of the sample), `common`, `niche`, `unknown` (no count). The thresholds go in the charter before counting. Reverse units are counted the same way where a count exists, else `unknown`.
+
+**A unit's usage** is the count behind its weight. **A state's share of counted usage** is the usage of its units over the usage of all counted units. Units with weight `unknown` are left out of the share and reported in units.
+
+**A profile uses a unit** when the configs that stand for it in the charter enable it or leave it on by default; for surfaces with no config (CLI, API, integrations), when a script search finds the profile's repositories calling it (scripts, CI files, imports).
 
 ## Static analysis
 
@@ -62,7 +82,7 @@ Extract by script, then diff by script:
 | CLI flag definitions | Flags missing or with another meaning |
 | Config schema | Keys not read, read differently, or ignored in silence |
 | Exported API | Symbols missing or with another signature |
-| The incumbent's test cases against the challenger's | Ported, changed, skipped, dropped. A skipped or dropped case is a gap candidate with its input ready |
+| The reference side's test cases against the graded side's | Ported, changed, skipped, dropped. A skipped or dropped case is a candidate with its input ready |
 | Trackers and docs | Stated non-goals, tracked gaps, documented divergences |
 
 Agents read what a diff cannot settle: the code of a unit whose cases were changed, an option that exists on both sides with another meaning. A finding names the lines on both sides.
@@ -72,15 +92,15 @@ Static analysis is weak where behaviour is in no schema and no test: output word
 ## A runtime case
 
 1. **One script, both tools.** The tool is the only argument; inputs, working directory, environment and locale are the same.
-2. **A minimal input** that should show the candidate gap, plus the config on each side. Where the incumbent has fixtures for the unit, a script turns them into cases in bulk; an agent writes an input only where there is none.
-3. **Normalise** both outputs into one schema (file, position, unit, severity, fix) and diff that. The normaliser lives in the study. Self check: the incumbent run twice must give no difference.
-4. **Verdict**: `confirmed` (the incumbent does it, the challenger does not, or differently), `refuted` (the same result), `not runnable` (why).
-5. **A confirmed gap** then gets its class, an impact count (how often the unit fires on the profiles' code at pinned commits) and its workaround tried on the same case.
+2. **A minimal input** that should show the candidate gap, plus the config on each side. Where the reference side has fixtures for the unit, a script turns them into cases in bulk; an agent writes an input only where there is none.
+3. **Normalise** both outputs into one schema (file, position, unit, severity, fix) and diff that. The normaliser lives in the study. Self check: the reference tool run twice must give no difference.
+4. **Result**: `confirmed` (the graded tool does not give the reference tool's result), `refuted` (it does), or the cell becomes `not runnable` (why).
+5. **A confirmed gap** then gets the class of each difference, an impact count (how often the unit fires on the profiles' code at pinned commits) and its workaround tried on the same case.
 6. **Record**: commands, both versions, both configs, raw outputs, the diff.
 
-The control sample (cells that reading called equivalent, drawn by a seeded script) runs through the same steps. A disagreement reopens the cell and sends the static team back to find what the reading missed. Sizes and thresholds: `references/increments.md`.
+The control sample (cells in state `read`, drawn by a seeded script) runs through the same steps. A disagreement reopens the cell and sends the static team back to find what the reading missed. Sizes and thresholds: `references/increments.md`.
 
-Conformance, where a harness allows: run the incumbent's test suite against the challenger. Report passed, failed and not runnable. Not runnable is not failed.
+Conformance, where a harness allows: run the reference side's test suite against the graded side. Report passed, failed and not runnable. Not runnable is not failed.
 
 Never adjust a config until the outputs match without saving the adjustment: it is a migration cost, and a finding.
 
@@ -105,30 +125,34 @@ Never adjust a config until the outputs match without saving the adjustment: it 
 
 ## Severity and verdicts
 
-Severity of a gap, per profile:
+A workaround has a kind: `config` (a change of configuration), `other tool`, `keep incumbent` (the incumbent keeps running beside the challenger for this unit), `accept` (live without it). And a cost, in words.
 
-| Severity | Means |
-|---|---|
-| `blocker` | The profile uses the unit and there is no workaround, or a floor breaks |
-| `costly` | A workaround exists: name it and what it costs (a config change, a second tool, lost coverage) |
-| `cosmetic` | The output differs and nothing the profile relies on breaks |
-| `none` | The profile does not use the unit |
+Severity of a confirmed gap, per profile:
 
-Verdict per profile, derived by script from the matrix:
+| Severity | Means | Set by |
+|---|---|---|
+| `none` | The profile does not use the unit | Script |
+| `blocker` | The profile uses the unit and no workaround worked on the case, or a floor breaks | Corpus runner proposes |
+| `costly` | A workaround worked: its kind and cost | Corpus runner proposes |
+| `cosmetic` | The output differs and nothing the profile relies on breaks | Corpus runner proposes |
+
+A proposed severity is disputed like any cell: an advocate objects, the judge decides.
+
+Verdict per profile, derived by script from the confirmed gaps on the units it uses. The first row that holds:
 
 | Verdict | When |
 |---|---|
-| `drop-in` | No blocker, no costly gap, floors hold |
-| `drop-in with changes` | No blocker; the costly gaps and their changes are listed |
-| `side by side` | The challenger covers the listed part; the incumbent stays for the listed rest |
-| `not yet` | Blockers, each with what would close it |
+| `not yet` | A blocker. Each is listed with what would close it |
+| `side by side` | No blocker; at least one gap's workaround is `keep incumbent`. The units left to the incumbent are listed |
+| `drop-in with changes` | No blocker, nothing kept on the incumbent; the costly gaps and their changes are listed |
+| `drop-in` | No blocker and no costly gap; the floors hold |
 
-Until the ledger is complete a verdict is a range, derived the same way twice: **at best** counts confirmed gaps only; **at worst** counts every open candidate on a unit the profile uses as a confirmed blocker. The units of the profile still `untouched` or at `baseline` are a count beside it. The range narrows with each increment and is final when both ends are the same.
+**The range.** While a unit the profile uses is open, the script derives the verdict twice: **at best** takes every open unit as no gap; **at worst** takes every open unit as a blocker. Beside the range go the profile's open units, counted by state and by weight. At the baseline the range is usually the widest there is, and those counts are what the owner reads; each increment narrows it. With no open unit left both ends are the same, and that is the verdict. The `not runnable` units the profile uses are named with it: the verdict holds except for what could not be shown either way.
 
 ## The cell record
 
 One JSON line per unit and direction in `matrix.jsonl`:
 
-`id`, `surface`, `unit`, `increment`, `direction` (gap or reverse), `weight` and its count and source, `value`, `proof` (read, specified, run, hypothesis), `evidence` (locators or case id), `state` (the ledger state), `differences` (each with its class), `impact` count, `status` and link, `severity` per profile, `workaround` and its cost, both versions, `date`, `mapped_by`, `validated_by`, `audited`.
+`id`, `surface`, `unit`, `increment`, `direction` (gap or reverse), `weight` with its count and source, `used_by` (profiles), `value`, `proof` (read, specified, run, hypothesis), `evidence` (locators or case id), `case` (confirmed, refuted, not runnable, or none yet), `differences` (each with its class), `impact` count, `gap_status` and link, `severity` per profile, `workaround` (kind and cost), `out` (owner decision, with the date), both versions, `date`, `mapped_by`, `validated_by`, `audited`.
 
-`matrix.jsonl` holds the current cells. Every change to one appends a line to `history.jsonl`: cell, increment, from, to, why, who.
+The ledger state is derived from `value`, `proof`, `mapped_by`, `case` and `out`.

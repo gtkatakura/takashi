@@ -13,6 +13,7 @@ One study supports one owner decision. A study that cannot name the decision it 
 
 - **Short path**: a narrow question ("does X have SCIM?", "which licence is Y?"). Recover what is known, check two independent sources, answer with the proof level of each claim. Skip to the report.
 - **Full study**: comparing options, mapping a market, choosing an architecture. Run every step below.
+- **One project against the incumbent it wants to replace** ("does X replace Y as-is?"): use `parity`.
 
 ## Steps
 

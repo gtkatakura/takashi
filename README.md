@@ -121,6 +121,8 @@ bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 - **Git aliases** - Predefined shortcuts for common git commands
 - **Shell aliases** - git, docker, Cursor (`c`), Claude Code without permission prompts (`cc`) and more
 - **Claude Code status line** - Model, effort, git state, session time, context, cost and lines changed, kept in `shared/defaults/claude/statusline.sh`
+- **Antigravity CLI status line** - Model, running subagents, effort, git state, context, cost, lines changed and weekly quota, kept in `shared/defaults/antigravity/statusline.sh`
+- **CLI telemetry opt-out** - Disables telemetry, error reporting and session sharing across Antigravity CLI, Claude Code, Codex, OpenCode, pi, Copilot CLI and `gh` (`shared/install/terminal/set-agent-telemetry.sh` and `shared/defaults/bash/telemetry.sh`)
 - **Keyboard layouts** - US and US International with Alt+Space switching (`kc` / `kt` to pick one)
 - **Numpad workspaces** (Omarchy) - Super + numpad switches workspaces, with Shift / Shift+Alt to move windows
 - **Rosetta 2** (macOS) - Translation layer for x86 apps on Apple Silicon

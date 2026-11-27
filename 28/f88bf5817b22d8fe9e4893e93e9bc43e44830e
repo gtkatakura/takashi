@@ -1,0 +1,18 @@
+README.md
+  h_6abdbb260968d1 124
+shared/defaults/antigravity/statusline.sh
+  h_6abdbb260968d1 1-105
+shared/install/terminal/set-antigravity-statusline.sh
+  h_6abdbb260968d1 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "28f88bf5817b22d8fe9e4893e93e9bc43e44830e",
+  "prompts": {},
+  "humans": {
+    "h_6abdbb260968d1": {
+      "author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

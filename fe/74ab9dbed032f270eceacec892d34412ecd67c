@@ -1,0 +1,23 @@
+README.md
+  s_b267a71232bec3::t_ca869b65ce9e72 106
+macbook/install.sh
+  s_b267a71232bec3::t_ca869b65ce9e72 84
+omarchy/install/terminal/app-gemini.sh
+  s_b267a71232bec3::t_ca869b65ce9e72 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fe74ab9dbed032f270eceacec892d34412ecd67c",
+  "prompts": {},
+  "sessions": {
+    "s_b267a71232bec3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "62825276-c617-4ac5-99a1-bfc3f74caf81",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

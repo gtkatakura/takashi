@@ -85,7 +85,6 @@ set_json() {
 }
 set_json ~/.claude/settings.json '.env.DISABLE_AUTOUPDATER = "1" | .env.DISABLE_UPDATES = "1"'
 set_json ~/.copilot/config.json '.autoUpdate = false'
-set_json ~/.gemini/settings.json '.general.enableAutoUpdate = false'
 set_json "$config_home/opencode/opencode.json" '.autoupdate = false'
 codex_toml=~/.codex/config.toml
 mkdir -p ~/.codex && touch $codex_toml

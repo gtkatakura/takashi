@@ -1,0 +1,18 @@
+README.md
+  h_6abdbb260968d1 125
+shared/defaults/bash/telemetry.sh
+  h_6abdbb260968d1 5-11
+shared/install/terminal/set-agent-telemetry.sh
+  h_6abdbb260968d1 1-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3eb5451f5000c212f53f212295b5276382610bce",
+  "prompts": {},
+  "humans": {
+    "h_6abdbb260968d1": {
+      "author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

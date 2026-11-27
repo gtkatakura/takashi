@@ -103,7 +103,7 @@ bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 
 ### AI & ML
 
-- **Coding agents** (macOS) - Claude Code, Codex, pi, oh-my-pi and opencode, installed through mise at their latest version (Omarchy ships them the same way)
+- **Coding agents** (macOS) - Claude Code, Codex, Gemini CLI, pi, oh-my-pi and opencode, installed through mise at their latest version (Omarchy ships them the same way and gets Gemini CLI from `omarchy/install/terminal/app-gemini.sh`)
 - **LM Studio** - Desktop app for running local language models
 - **Agent skills** (Omarchy) - Skills for opencode and Claude Code (PR shipping, reviews, library spikes, research studies, parity studies of a challenger against the tool it wants to replace, refactoring, evidence before claiming done, before and after proof of a change) plus pinned third-party skills; opencode also gets slash commands, `reviewer` and `frontend` agents (Figma, Chrome DevTools and Playwright MCP) and global instructions, all kept in `shared/defaults/agents`
 

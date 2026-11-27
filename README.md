@@ -103,7 +103,7 @@ bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 
 ### AI & ML
 
-- **Coding agents** (macOS) - Claude Code, Codex, Gemini CLI, pi, oh-my-pi and opencode, installed through mise at their latest version (Omarchy ships them the same way and gets Gemini CLI from `omarchy/install/terminal/app-gemini.sh`)
+- **Coding agents** (macOS) - Claude Code, Codex, Antigravity CLI, pi, oh-my-pi and opencode, installed through mise at their latest version (Omarchy ships them the same way and gets Antigravity CLI from `omarchy/install/terminal/app-antigravity.sh`)
 - **LM Studio** - Desktop app for running local language models
 - **Agent skills** (Omarchy) - Skills for opencode and Claude Code (PR shipping, reviews, library spikes, research studies, parity studies of a challenger against the tool it wants to replace, refactoring, evidence before claiming done, before and after proof of a change) plus pinned third-party skills; opencode also gets slash commands, `reviewer` and `frontend` agents (Figma, Chrome DevTools and Playwright MCP) and global instructions, all kept in `shared/defaults/agents`
 
@@ -143,7 +143,7 @@ nothing extra.
 | No unapproved install scripts | Bun and pnpm defaults, npm `strict-allow-scripts`, mise `allow_builds` | postinstall payloads |
 | No stray pip installs | `PIP_REQUIRE_VIRTUALENV=1` | pip in third-party projects |
 | Provenance | mise `paranoid = ["provenance"]`, plus its default attestation, SLSA and cosign checks | binaries installed by mise |
-| No self-updates | claude, codex, copilot, gemini, opencode and grok settings | agent CLIs change only through `mise upgrade`, after the cooldown |
+| No self-updates | claude, codex, copilot, agy, opencode and grok settings | agent CLIs change only through `mise upgrade`, after the cooldown |
 
 The scanner fails closed. Offline, or with the Socket API down, `bun install` stops. It costs about
 +0.3 s per `bun install` and +2 s per mise `npm:` install. Inside a project that pins Node below

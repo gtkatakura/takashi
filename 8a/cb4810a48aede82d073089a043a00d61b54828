@@ -1,0 +1,25 @@
+macbook/install.sh
+  s_a021faaf2f5b44::t_b269f52621d36a 84
+omarchy/install/terminal/app-antigravity.sh
+  s_a021faaf2f5b44::t_b269f52621d36a 1-5
+shared/defaults/bash/supply-chain.sh
+  s_a021faaf2f5b44::t_b269f52621d36a 11-13
+README.md
+  s_a021faaf2f5b44::t_b269f52621d36a 106,146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8acb4810a48aede82d073089a043a00d61b54828",
+  "prompts": {},
+  "sessions": {
+    "s_a021faaf2f5b44": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d7f9fee2-c80e-4ce8-b4f6-81ebf216dc30",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

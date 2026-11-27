@@ -20,16 +20,25 @@ eval "$(jq -r '
     ([whole, 100] | min | (. * 10 + 50) / 100 | floor) as $filled
     | "▰" * $filled + "▱" * (10 - $filled);
 
-  def weekly_used:
-    (.quota // {})
+  def quota_family:
+    if (.model.id // .model.display_name // "") | test("claude|gpt"; "i") then "3p"
+    else "gemini"
+    end;
+
+  def quota_used($suffix; $pattern):
+    (quota_family + "-" + $suffix) as $preferred
+    | (.quota // {}) as $q
     | (
-        ."gemini-weekly"
-        // (to_entries | map(select(.key | test("weekly"; "i"))) | first | .value)
-        // (to_entries | min_by(.value.remaining_fraction) | .value)
+        ($q[$preferred] | if . != null and .disabled != true and .remaining_fraction != null then . else null end)
+        // (
+            $q
+            | to_entries
+            | map(select((.key | test($pattern; "i")) and .value.disabled != true and .value.remaining_fraction != null))
+            | .[0].value
+          )
       )
-    | .remaining_fraction
     | if . == null then ""
-      else "\(([0, ([100, (((1 - .) * 100) | round)] | min)] | max))%"
+      else "\(([0, ([100, (((1 - .remaining_fraction) * 100) | round)] | min)] | max))%"
       end;
 
   @sh "
@@ -41,7 +50,8 @@ eval "$(jq -r '
     tokens_total=\(.context_window.context_window_size | compact)
     context_bar=\(.context_window.used_percentage | bar)
     cost=\(.cost.total_usd // "")
-    week=\(weekly_used)
+    five_hour=\(quota_used("5h"; "5h|five[-_]?hour"))
+    week=\(quota_used("weekly"; "weekly|7d"))
   "
 ')"
 
@@ -99,6 +109,10 @@ fi
 separator
 printf '➕ %s ➖ %s ' "$added" "$removed"
 
+if [ -n "$five_hour" ]; then
+  separator
+  paint '38;2;180;142;173' "⏳ 5h $five_hour"
+fi
 if [ -n "$week" ]; then
   separator
   paint '38;2;180;142;173' "📅 7d $week"

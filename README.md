@@ -119,7 +119,7 @@ bash <(curl -fsSL setup.gtkatakura.com/install.sh)
 ### System Configuration
 
 - **Git aliases** - Predefined shortcuts for common git commands
-- **Shell aliases** - git, docker, Cursor (`c`), Claude Code without permission prompts (`cc`) and more
+- **Shell aliases** - git, docker, Cursor (`c`), Claude Code without permission prompts (`cc`), Antigravity CLI (`a`, `aa`) and more
 - **Claude Code status line** - Model, effort, git state, session time, context, cost and lines changed, kept in `shared/defaults/claude/statusline.sh`
 - **Antigravity CLI status line** - Model, running subagents, effort, git state, context, cost, lines changed, 5-hour and weekly quota, kept in `shared/defaults/antigravity/statusline.sh`
 - **CLI telemetry opt-out** - Disables telemetry, error reporting and session sharing across Antigravity CLI, Claude Code, Codex, OpenCode, pi, Copilot CLI and `gh` (`shared/install/terminal/set-agent-telemetry.sh` and `shared/defaults/bash/telemetry.sh`)

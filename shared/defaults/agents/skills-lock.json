@@ -57,6 +57,13 @@
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
       "computedHash": "f768cb44209e0d30e3449b8f95ea3dc8293093f73cfe02127d530db43412cf76"
     },
+    "summarize-pr": {
+      "source": "MeLlamoPablo/skills",
+      "ref": "72199a8508b019c950c909a5b2a9906d5cfc452c",
+      "sourceType": "github",
+      "skillPath": "skills/summarize-pr/SKILL.md",
+      "computedHash": "cc2893725205232f5f1a167ee2269f7f81669ce49fac631372382981653e68c8"
+    },
     "writing-for-agents": {
       "source": "mattpocock/skills",
       "ref": "321658273cb1d20b76026717d027d505790106d4",

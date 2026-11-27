@@ -15,6 +15,10 @@ alias c='cursor .' # overrides omarchy: c='opencode --auto'
 alias cc='claude --dangerously-skip-permissions'
 alias ccc='cc --continue'
 
+# Antigravity CLI aliases
+alias a='agy' # overrides omarchy: a='omarchy-agent --inline'
+alias aa='agy --dangerously-skip-permissions'
+
 # Git aliases
 alias gp='git pull'
 alias gs='git status'

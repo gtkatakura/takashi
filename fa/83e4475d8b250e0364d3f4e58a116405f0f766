@@ -1,0 +1,19 @@
+shared/defaults/agents/skills-lock.json
+  s_7cc8d740ea6893::t_c1ee049cdbdcff 60-66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fa83e4475d8b250e0364d3f4e58a116405f0f766",
+  "prompts": {},
+  "sessions": {
+    "s_7cc8d740ea6893": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5b3a3803-79d8-41e7-88b5-e05204752846",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}

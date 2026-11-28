@@ -1,0 +1,19 @@
+macbook/defaults/bash/init.sh
+  s_747e2d0074b940::t_dd7f37efadbf9d 9-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d97ad6687e1c32126aeb7b9ae434fb4ea51fd1be",
+  "prompts": {},
+  "sessions": {
+    "s_747e2d0074b940": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63b5b0e7-e821-4226-a76e-076ea6ee2051",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "gtkatakura <gt.katakura@gmail.com>"
+    }
+  }
+}
